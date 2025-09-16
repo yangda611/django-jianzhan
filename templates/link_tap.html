@@ -1,0 +1,63 @@
+{% if level == 0 %}
+{% for row in home_lan %}
+{% if row.0 == 'en' %}
+<link rel="canonical" href="{{site_mes.url}}/{{row.0}}/" />
+<link rel="alternate" hreflang="{{row.0}}" href="{{site_mes.url}}/{{row.0}}/" />
+{% else %}
+<link rel="alternate" hreflang="{{row.0}}" href="{{site_mes.url}}/{{row.0}}/" />
+{% endif %}
+{% endfor %}
+{% else %}
+{% for row in lan_url %}
+{% if level == 2 %}
+{% if row.language_code == 'en' %}
+<link rel="canonical" href="{{site_mes.url}}/{{row.language_code}}/{{ row.url }}.html">
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/{{ row.url }}.html">
+{% else %}
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/{{ row.url }}.html">
+{% endif %}
+{% elif level == 3 %}
+{% if row.language_code == 'en' %}
+<link rel="canonical" href="{{site_mes.url}}/{{row.language_code}}/{{row.c_url}}/{{ row.url }}.html">
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/{{row.c_url}}/{{ row.url }}.html">
+{% else %}
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/{{row.c_url}}/{{ row.url }}.html">
+{% endif %}
+{% elif level == 4 %}
+{% if row.language_code == 'en' %}
+<link rel="canonical" href="{{site_mes.url}}/{{row.language_code}}/d/{{ row.url }}.html">
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/d/{{ row.url }}.html">
+{% else %}
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/d/{{ row.url }}.html">
+{% endif %}
+{% elif level == 5 %}
+{% if row.language_code == 'en' %}
+<link rel="canonical" href="{{site_mes.url}}/{{row.language_code}}/a/{{ row.url }}.html" />
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/d/{{ row.url }}.html">
+{% else %}
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/a/{{ row.url }}.html" />
+{% endif %}
+{% elif level == 6 %}
+{% if row.language_code == 'en' %}
+<link rel="canonical" href="{{site_mes.url}}/{{row.language_code}}/a/{{row.c_url}}/{{ row.url }}.html">
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/a/{{row.c_url}}/{{ row.url }}.html">
+{% else %}
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/a/{{row.c_url}}/{{ row.url }}.html">
+{% endif %}
+{% elif level == 7 %}
+{% if row.language_code == 'en' %}
+<link rel="canonical" href="{{site_mes.url}}/{{row.language_code}}/c/{{ row.url }}.html">
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/c/{{ row.url }}.html">
+{% else %}
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/c/{{ row.url }}.html">
+{% endif %}
+{% elif level == 8 %}
+{% if row.language_code == 'en' %}
+<link rel="canonical" href="{{site_mes.url}}/{{row.language_code}}/c/{{row.c_url}}/{{ row.url }}.html">
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/c/{{row.c_url}}/{{ row.url }}.html">
+{% else %}
+<link rel="alternate" hreflang="{{row.language_code}}" href="{{site_mes.url}}/{{row.language_code}}/c/{{row.c_url}}/{{ row.url }}.html">
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}

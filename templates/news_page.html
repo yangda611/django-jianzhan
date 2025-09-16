@@ -1,0 +1,116 @@
+{% load myfilter %}{% lineless %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>{{ news_obj.title }}-{{ site_mes.name }}</title>
+    <meta name="keywords" content="{{ news_obj.keywords }}" />
+    <meta name="description" content="{{ news_obj.describe }}" />
+    {% include 'meta.html' %}
+    <link rel="stylesheet" href="{{site_mes.url}}/static/css/neiye.css" type="text/css" />
+<script type="application/ld+json">
+{
+    "@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+    "@id": "{{site_mes.url}}{{news_obj.get_absolute_url}}",
+    "title": "{{news_obj.title}}-{{ site_mes.name }}",
+    "images":["{{site_mes.url}}/media/{{ news_obj.small_image }}"],
+    "description":"{{news_obj.describe}}",
+    "pubDate":"{{news_obj.created_time|date:'Y-m-d\TH:i:s'}}",
+    "upDate":"{{news_obj.updated_time|date:'Y-m-d\TH:i:s'}}",
+}
+</script>
+{% include 'footjs.html' %}
+</head>
+<body>
+{% include 'header.html' %}
+
+<div class="lksy_nybanner lksy_banner">
+    <img src="{{site_mes.url}}/static/images/banner_news.webp" title="{{ news_c_obj.name }}" alt="{{ news_c_obj.name }}" />
+    <div class="lksy_text translate_y">
+        <p>{{ news_c_obj.name }}</p>
+        <div class="lksy_position">
+            <a href="{{site_mes.url}}/">首页</a> 
+            {% if news_c_obj.category.category %}
+            <a href="{{site_mes.url}}{{ news_c_obj.category.category.get_absolute_url }}">{{ news_c_obj.category.category.name }}</a> 
+            {% endif %}
+            {% if news_c_obj.category %}
+            <a href="{{site_mes.url}}{{ news_c_obj.category.get_absolute_url }}">{{ news_c_obj.category.name }}</a> 
+            {% endif %}
+            <a href="{{site_mes.url}}{{ news_c_obj.get_absolute_url }}">{{ news_c_obj.name }}</a>
+        </div>
+    </div>
+</div>
+
+<div class="lksy_newspage">
+    <div class="container">
+        <div class="lksy_newspage_t">
+            <h1>{{ news_obj.name }}</h1>
+            <p>
+                <span>发布时间：{{news_obj.created_time|date:'Y-m-d H:i:s'}}</span>
+                <span>来源：{{site_mes.name}}</span>
+            </p>
+        </div>
+        <div class="lksy_newspage_c">
+            {{news_obj.content | safe}}
+        </div>
+        <div class="lksy_fanye clearfix">
+            {%if n_prev%}
+            {%for row in n_prev%}
+            <a href="{{site_mes.url}}{{ row.get_absolute_url }}" title="{{row.name}}" class="a_span fl clearfix">
+                <i class="icon1 fl"></i>
+                <div class="a_p al fl"><div class="a_pp"><p>{{row.name}}</p></div></div>
+            </a>
+            {%endfor%}
+            {%else%}
+            <span class="a_span fl clearfix">
+                <i class="icon1 fl"></i>
+                <div class="a_p al fl"><div class="a_pp"><p>暂无记录</p></div></div>
+            </span>
+            {%endif%}
+            {%if n_next%}
+            {%for row in n_next%}
+            <a href="{{site_mes.url}}{{ row.get_absolute_url }}" title="{{row.name}}" class="a_span fr clearfix">
+                <i class="icon2 fr"></i>
+                <div class="a_p a2 fr"><div class="a_pp"><p>{{row.name}}</p></div></div>
+            </a>
+            {%endfor%}
+            {%else%}
+            <span class="a_span fr clearfix">
+                <i class="icon2 fr"></i>
+                <div class="a_p a2 fr"><div class="a_pp"><p>暂无记录</p></div></div>
+            </span>
+            {%endif%}
+        </div>
+    </div>
+</div>
+
+<div class="lksy_pro_related">
+    <div class="container">
+        <div class="lksy_title">
+            <p>选择我们</p>
+            <div class="lksy_tit">相关产品</div>
+        </div>
+        <ul class="clearfix lksy_prolist">
+            {%for row in same_tag_goods%}
+            <li>
+                <a class="de3" href="{{site_mes.url}}{{row.get_absolute_url}}" title="{{row.name}}">
+                    <div class="lksy_pic">
+                        <img src="{{site_mes.url}}/media/{{row.goodsimage_set.filter.first.images}}" title="{{row.goodsimage_set.filter.first.alt}}" alt="{{row.goodsimage_set.filter.first.alt}}" />
+                    </div>
+                    <p>{{row.name}}</p>
+                </a>
+            </li>
+            {%endfor%}
+        </ul>
+    </div>
+</div>
+
+{% include 'foot.html' %}
+
+{% include 'js.html' %}
+<script type="text/javascript" src="{{site_mes.url}}/static/js/neiye.js"></script>
+</body>
+</html>
+{% endlineless %}

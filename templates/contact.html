@@ -1,0 +1,77 @@
+{% load myfilter %}{% lineless %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>{{ page_obj.title }}-{{ site_mes.name }}</title>
+    <meta name="keywords" content="{{ page_obj.keywords }}" />
+    <meta name="description" content="{{ page_obj.describe }}" />
+    {% include 'meta.html' %}
+    <link rel="stylesheet" href="{{site_mes.url}}/static/css/neiye.css" type="text/css" />
+<script type="application/ld+json">
+{
+    "@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+    "@id": "{{site_mes.url}}{{page_obj.get_absolute_url}}",
+    "title": "{{page_obj.title}}-{{ site_mes.name }}",
+    "description":"{{page_obj.describe}}",
+    "upDate":"{{p_time|date:'Y-m-d\TH:i:s'}}",
+}
+</script>
+{% include 'footjs.html' %}
+</head>
+<body>
+{% include 'header.html' %}
+
+<div class="lksy_nybanner lksy_banner">
+    <img src="{{site_mes.url}}/static/images/banner_contact.webp" title="{{ page_obj.name }}" alt="{{ page_obj.name }}" />
+    <div class="lksy_text translate_y">
+        <p>{{ page_obj.name }}</p>
+        <div class="lksy_position">
+            <a href="{{site_mes.url}}/">首页</a>  {{ page_obj.name }}
+        </div>
+    </div>
+</div>
+
+<div class="lksy_contact">
+    <div class="container">
+        <div class="lksy_contact_l">
+            <div class="lksy_title">
+                <p>获取联系</p>
+                <div class="lksy_tit">我们很高兴收到您的来信</div>
+            </div>
+            <div class="lksy_contact_form">
+                <form method="post" id="footmes">
+                    {% csrf_token %}
+                    <input type="text" name="guest" id="guest" placeholder="您的姓名 *" />
+                    <input type="text" name="tel" id="tel" placeholder="您的电话 *" />
+                    <input type="text" name="email" id="email" placeholder="您的邮箱 *" />
+                    <textarea name="content" id="content" placeholder="内容 *"></textarea>
+                    <div class="de3 lksy_but">立即提交</div>
+                </form>
+            </div>
+        </div>
+        <div class="lksy_contact_r">
+            <div class="lksy_title">
+                <p>联系方式</p>
+                <div class="lksy_tit">{{ site_mes.name }}</div>
+            </div>
+            <div class="lksy_contact_c">
+                <div class="lksy_text">
+                    <p>{{site_mes.phone}}&nbsp;&nbsp;&nbsp;&nbsp;{{site_mes.tel}}</p>
+                    <p>{{site_mes.email}}</p>
+                    <p>{{site_mes.address}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'foot.html' %}
+
+{% include 'js.html' %}
+<script type="text/javascript" src="{{site_mes.url}}/static/js/neiye.js"></script>
+</body>
+</html>
+{% endlineless %}

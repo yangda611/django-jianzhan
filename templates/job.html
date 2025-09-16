@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/lib.js"></script>
+    <script src="/static/js/swiper-4.3.5.min.js"></script>
+    <link rel="stylesheet" href="/static/css/swiper-4.3.5.min.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+<div class="ban"></div>
+<p>岗位：{{ job_obj.name }}</p>
+<p>URL: {{ job_obj.url }}</p>
+<p>工作地点: {{ job_obj.address }}</p>
+<p>招聘人数: {{ job_obj.number }}</p>
+<p>薪资待遇: {{ job_obj.salary }}</p>
+<p>职业描述: {{ job_obj.describe }}</p>
+<p>更新时间: {{ job_obj.updated_time }}</p>
+
+
+</body>
+</html>

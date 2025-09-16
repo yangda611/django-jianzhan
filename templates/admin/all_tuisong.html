@@ -1,0 +1,98 @@
+{% extends "admin/caidan.html" %}
+{% load i18n static %}
+
+
+{% block content %}
+<!--{{ lists }}-->
+
+<head>
+
+    <link href="/static/keshihua/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<div>
+</br>
+<h1 class="h3 mb-1 text-gray-800">全站推送</h1>
+<a href="/sxkjcms-admin/site_set/baidufanhuizhi/all_tui" class="btn btn-light btn-icon-split" style="margin-left: 800px; margin-top: -50px; font-size: 14px">
+<span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span>
+<span class="text">启动全站推送</span>
+</a>
+</div>
+</br>
+
+<body>
+
+
+<p>相比起sitemap提交，状态反馈更及时，原来提交后需要登录到搜索资源平台查看提交是否成功。目前只要根据提交后返回的数据就可以判断了。</p>
+<p>在什么时机使用API推送提交功能效果最明显？ 答：页面链接产生或发布时立即提交，这样效果是最好的。 </p>
+<p>如果您提交的链接在之前提交过（即重复提交）是不会被统计到的。</p>
+</br>
+<h6 style="color: #4e73df">本次推送：&nbsp&nbsp 成功推送 {{ success }} 条&nbsp&nbsp&nbsp&nbsp 剩余额度 {{ remain }} 条</h6>
+</br>
+<!---->
+
+{% for b in page %}
+<div class="row">
+    <div class="col-lg-6" style="width: 800px">
+<!--        card mb-4 py-3 border-left-primary-->
+<!--        上面是另一种样式，颜色在左边-->
+        <div class="card mb-4 py-3 border-left-primary" style="width: 800px;">&nbsp&nbsp{{ b }}</div>
+     </div>
+
+</div>
+
+{% endfor %}
+
+<a href="{% url 'admin:all_tui' %}">首页</a>
+{% if page.has_previous %}
+<a href="{% url 'admin:all_tui' %}?page={{ page.previous_page_number }}">上一页</a>
+{% else %}
+上一页
+{% endif %}
+
+{% for p in paginator.page_range %}
+<!--如果在当前页就没链接不能点-->
+    {% if p == page.number %}
+        {{ p }}
+<!--其它页可以点-->
+    {% else %}
+        <a href="{% url 'admin:all_tui' %}?page={{ p }}">{{ p }}</a>
+    {% endif %}
+{% endfor %}
+
+{% if page.has_next %}
+<a href="{% url 'admin:all_tui' %}?page={{ page.next_page_number }}">下一页</a>
+{% else %}
+下一页
+{% endif %}
+
+
+<!---->
+
+<!--<div class="row">-->
+
+<!--    <div class="col-lg-6" style="width: 1000px">-->
+<!--        <div class="card mb-4 py-3 border-left-primary" style="width: 1000px">&nbsp&nbsp第一个网址</div>-->
+<!--        <div class="card mb-4 py-3 border-left-secondary" style="width: 1000px">&nbsp&nbsp第一个网址</div>-->
+<!--        <div class="card mb-4 py-3 border-left-success" style="width: 1000px">&nbsp&nbsp第一个网址</div>-->
+<!--        <div class="card mb-4 py-3 border-left-info" style="width: 1000px">&nbsp&nbsp第一个网址</div>-->
+<!--        <div class="card mb-4 py-3 border-left-warning" style="width: 1000px">&nbsp&nbsp第一个网址</div>-->
+<!--        <div class="card mb-4 py-3 border-left-danger" style="width: 1000px">&nbsp&nbsp第一个网址</div>-->
+<!--        <div class="card mb-4 py-3 border-left-dark" style="width: 1000px">&nbsp&nbsp第一个网址</div>-->
+<!--     </div>-->
+<!--</div>-->
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

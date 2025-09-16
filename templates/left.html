@@ -1,0 +1,35 @@
+  <div class="newscow_right">
+        <div class="news_product picScroll-top">
+            <div class="np_title"><span>相关产品</span></div>
+            <div class="bd">
+                <ul class="clearfix">
+                    {%for row in same_tag_goods%}
+                    <li>
+                        <div class="r_img">
+                            <a href="{{site_mes.url}}{{row.get_absolute_url}}" target="_blank">
+                                {%for picrow in row.goodsimage_set.filter%}
+                                {%if forloop.first %}
+                                <div class="pic"><img src="{{site_mes.url}}/media/{{picrow.images}}" title="{{row.name}}" alt="{{row.name}}" class="img-cover" /></div>
+                                {%endif%}
+                                {%endfor%}
+                            </a>
+                        </div>
+                        <div class="title"><a href="{{site_mes.url}}{{row.get_absolute_url}}" target="_blank">
+                        {{row.name}}
+                        </a></div>
+                    </li>
+                    {%endfor%}
+                </ul>
+            </div>
+        </div>
+      <div class="news_product" style="margin-top:20px;">
+          <div class="np_title"><span>相关资讯</span></div>
+          <div class="news_nlist">
+              <ul class="clearfix">
+                  {%for row in same_tag_news%}
+                <li><a href="{{site_mes.url}}{{row.get_absolute_url}}" title="{{row.name}}" target="_blank">{{row.name}}</a></li>
+                {%endfor%}
+              </ul>
+          </div>
+      </div>
+  </div>

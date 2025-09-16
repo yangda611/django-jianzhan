@@ -1,0 +1,46 @@
+{% extends "admin/caidan.html" %}
+{% load i18n static %}
+
+
+{% block content %}
+
+
+<head>
+
+    <link href="/static/keshihua/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<div>
+</br>
+<h1 class="h3 mb-1 text-gray-800">敏感词收集</h1>
+<a href="/sxkjcms-admin/site_set/mingan/mgc" class="btn btn-light btn-icon-split" style="margin-left: 800px; margin-top: -50px; font-size: 14px">
+<span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span>
+<span class="text">启动敏感词收集</span>
+</a>
+</div>
+</br>
+
+<body>
+
+
+<p>如果您当前的敏感词库中存在有数据，那么点击『启动敏感词收集』后会覆盖您之前的敏感词库。</p>
+<p>如果您希望对敏感词库的数据进行自定义，可以在『敏感词管理』栏目中操作</p>
+<p>您所收集的敏感词会从『尚贤总库』中获取，我们会更新总库数据</p>
+</br>
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

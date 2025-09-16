@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /?*
+Disallow: /django_admin_global_sidebar/
+Disallow: /media/
+Disallow: /static/
+Disallow: /templates/
+Disallow: /sxkjcms-admin/
+Disallow: /manage.py
+Disallow: /d/jianjie
+Disallow: /d/lianxi
+Sitemap: /sitemap.xml

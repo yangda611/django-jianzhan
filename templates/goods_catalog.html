@@ -1,0 +1,86 @@
+{% load myfilter %}{% lineless %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>{{ goods_c_obj.title }}-{{ site_mes.name }}</title>
+    <meta name="keywords" content="{{ goods_c_obj.keywords }}" />
+    <meta name="description" content="{{ goods_c_obj.describe }}" />
+    {% include 'meta.html' %}
+    <link rel="stylesheet" href="{{site_mes.url}}/static/css/neiye.css" type="text/css" />
+<script type="application/ld+json">
+{
+    "@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+    "@id": "{{site_mes.url}}{{goods_c_obj.get_absolute_url}}",
+    "title": "{{goods_c_obj.name}}-{{ site_mes.name }}",
+    "description":"{{goods_c_obj.describe}}",
+    "upDate":"{{g_time|date:'Y-m-d\TH:i:s'}}",
+}
+</script>
+{% include 'footjs.html' %}
+</head>
+<body>
+{% include 'header.html' %}
+<div class="lksy_nybanner lksy_banner">
+    <img src="{{site_mes.url}}/static/images/banner_pro.webp" title="{{ goods_c_obj.name }}" alt="{{ goods_c_obj.name }}" />
+    <div class="lksy_text translate_y">
+        <p>{{ goods_c_obj.name }}</p>
+        <div class="lksy_position">
+            <a href="{{site_mes.url}}/">首页</a>  {% if goods_c_obj.category.category %}
+            <a href="{{site_mes.url}}{{ goods_c_obj.category.category.get_absolute_url }}">{{ goods_c_obj.category.category.name }}</a> 
+            {% endif %}
+            {% if goods_c_obj.category %}
+            <a href="{{site_mes.url}}{{ goods_c_obj.category.get_absolute_url }}">{{ goods_c_obj.category.name }}</a> 
+            {% endif %}
+            <a href="{{site_mes.url}}{{ goods_c_obj.get_absolute_url }}">{{ goods_c_obj.name }}</a>
+        </div>
+    </div>
+</div>
+
+<div class="lksy_probox">
+    <div class="container">
+        <ul class="clearfix lksy_prolist">
+            {% for row in page %}
+            <li>
+                <a class="de3" href="{{site_mes.url}}{{ row.get_absolute_url }}" title="{{ row.name }}">
+                    <div class="lksy_pic">
+                        <img src="{{site_mes.url}}/media/{{row.goodsimage_set.filter.first.images}}" title="{{row.goodsimage_set.filter.first.alt}}" alt="{{row.goodsimage_set.filter.first.alt}}" />
+                    </div>
+                    <p>{{ row.name }}</p>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {%if is_paginated%}
+        <div class="manu">
+            {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}"><</a>
+            {% else %}
+            <span class="disabled"><</span>
+            {% endif %}
+            {% for p in page_range %}
+            {% if p == page.number %}
+            <span class="current">{{ p }}</span>
+            {%elif p != '…'%}
+            <a href="?page={{ p }}">{{ p }}</a>
+            {% endif %}
+            {% endfor %}
+            {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">></a>
+            {% else %}
+            <span class="disabled">></span>
+            {% endif %}
+        </div>
+        {%endif%}
+    </div>
+</div>
+{% include 'foot.html' %}
+
+{% include 'js.html' %}
+<script type="text/javascript" src="{{site_mes.url}}/static/js/neiye.js"></script>
+
+</body>
+</html>
+{% endlineless %}

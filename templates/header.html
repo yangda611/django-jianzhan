@@ -1,0 +1,91 @@
+<header class="de3">
+    <div class="container">
+        <div class="lksy_top">
+            <div class="lksy_l">
+                <span>{{site_mes.phone}}</span>
+                <span>{{site_mes.email}}</span>
+            </div>
+            <div class="lksy_r">
+                <a href="https://twitter.com/" title="Twitter" target="_blank" rel="nofollow"><i class="icon"></i></a>
+                <a href="https://www.facebook.com/" title="Facekbook" target="_blank" rel="nofollow"><i class="icon"></i></a>
+                <a href="https://www.pinterest.ca/lakshyomolly/" title="Pinterest" target="_blank" rel="nofollow"><i class="icon"></i></a>
+                <a href="https://www.youtube.com/" title="Youtube" target="_blank" rel="nofollow"><i class="icon"></i></a>
+                <a href="https://api.whatsapp.com/send?phone={{site_mes.phone}}" title="Whatsapp" target="_blank" rel="nofollow"><i class="icon"></i></a>
+            </div>
+        </div>
+        <div class="lksy_head clearfix">
+            <div class="lksy_logo">
+                <a href="{{site_mes.url}}/" title="{{ site_mes.title }}">
+                    <img src="{{site_mes.url}}/static/images/logo_h.svg" alt="{{ site_mes.title }}" title="{{ site_mes.title }}" width="164px" height="78px" />
+                    {% if h_name == 1 %}
+                    <h1 class="lksy_logo_text">{{ site_mes.title }}</h1>
+                    {% else %}
+                    <div class="lksy_logo_text">{{ site_mes.title }}</div>
+                    {% endif %}
+                </a>
+            </div>
+            <div class="lksy_ment">
+                <ul class="clearfix">
+                    <li><a href="{{site_mes.url}}" title="首页">首页</a></li>
+                    <li>
+                        <a href="{{site_mes.url}}/products.html" title="产品中心">产品中心</a>
+                        <div class="sub">
+                            {%for row in comm_pro_c%}
+                            <a href="{{site_mes.url}}{{ row.get_absolute_url }}" title="{{row.name}}">{{row.name}}</a>
+                            {% endfor %}
+                        </div>
+                    </li>
+                    <li><a href="{{site_mes.url}}/d/service.html" title="定制服务">定制服务</a></li>
+                    <li><a href="{{site_mes.url}}/d/about.html" title="公司简介">公司简介</a></li>
+                    <li>
+                        <a href="{{site_mes.url}}/a/news.html" title="新闻中心">新闻中心</a>
+                        <div class="sub">
+                            {%for row in comm_news_c%}
+                            <a href="{{site_mes.url}}{{ row.get_absolute_url }}" title="{{row.name}}">{{row.name}}</a>
+                            {% endfor %}
+                            <a href="{{site_mes.url}}/c/cases.html" title="客户案例">客户案例</a>
+                        </div>
+                    </li>
+                    <li><a href="{{site_mes.url}}/d/contact.html" title="联系我们">联系我们</a></li>
+                </ul>
+            </div>
+            <div class="lksy_head_bg de5"></div>
+        </div>
+    </div>
+</header>
+
+<div class="lksy_hd-mobile">
+    <div class="container">
+        <span class="lksy_menuBtn"></span>
+        <div class="lksy_logo">
+            <a href="{{site_mes.url}}" title="{{ site_mes.name }}">
+                <img src="{{site_mes.url}}/static/images/logo_h.svg" alt="{{ site_mes.name }}" title="{{ site_mes.name }}">
+            </a>    
+        </div>  
+        <div class="lksy_nav_mobile">
+            <ul>
+                <li><a href="{{site_mes.url}}" title="首页" class="v1">首页</a></li>
+                <li>
+                    <a href="{{site_mes.url}}/products.html" title="产品中心" class="v1">产品中心</a><i></i>
+                    <div class="lksy_sub">
+                        {%for row in comm_pro_c%}
+                        <a href="{{site_mes.url}}{{ row.get_absolute_url }}" title="{{row.name}}">{{row.name}}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li><a href="{{site_mes.url}}/d/service.html" title="定制服务" class="v1">定制服务</a></li>
+                <li><a href="{{site_mes.url}}/d/about.html" title="公司简介" class="v1">公司简介</a></li>
+                <li>
+                    <a href="{{site_mes.url}}/a/news.html" title="新闻中心" class="v1">新闻中心</a><i></i>
+                    <div class="lksy_sub">
+                        {%for row in comm_news_c%}
+                        <a href="{{site_mes.url}}{{ row.get_absolute_url }}" title="{{row.name}}">{{row.name}}</a>
+                        {% endfor %}
+                        <a href="{{site_mes.url}}/c/cases.html" title="客户案例">客户案例</a>
+                    </div>
+                </li>
+                <li><a href="{{site_mes.url}}/d/contact.html" title="联系我们" class="v1">联系我们</a></li>
+            </ul>
+        </div> 
+    </div>
+</div>

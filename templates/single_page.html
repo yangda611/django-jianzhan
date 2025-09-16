@@ -1,0 +1,65 @@
+{% load myfilter %}{% lineless %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>{{ page_obj.title }}-{{ site_mes.name }}</title>
+    <meta name="keywords" content="{{ page_obj.keywords }}" />
+    <meta name="description" content="{{ page_obj.describe }}" />
+    {% include 'meta.html' %}
+    <link rel="stylesheet" href="{{site_mes.url}}/static/css/neiye.css" type="text/css" />
+<script type="application/ld+json">
+{
+    "@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+    "@id": "{{site_mes.url}}{{page_obj.get_absolute_url}}",
+    "title": "{{page_obj.title}}-{{ site_mes.name }}",
+    "description":"{{page_obj.describe}}",
+    "upDate":"{{p_time|date:'Y-m-d\TH:i:s'}}",
+}
+</script>
+{% include 'footjs.html' %}
+</head>
+<body>
+{% include 'header.html' %}
+
+<div class="lksy_nybanner lksy_banner">
+    <img src="{{site_mes.url}}/static/images/banner_about.webp" title="{{ page_obj.name }}" alt="{{ page_obj.name }}" />
+    <div class="lksy_text translate_y">
+        <p>{{ page_obj.name }}</p>
+        <div class="lksy_position">
+            <a href="{{site_mes.url}}/">首页</a>  {{ page_obj.name }}
+        </div>
+    </div>
+</div>
+
+<div class="lksy_aboutinfo">
+    <div class="container">
+        <div class="lksy_title">
+            <div class="lksy_tit">{{ page_obj.name }}</div>
+        </div>
+        <div class="lksy_text">
+            {{ page_obj.content | safe }}
+        </div>
+    </div>
+</div>
+
+{% include 'foot.html' %}
+
+{% include 'js.html' %}
+<script type="text/javascript" src="{{site_mes.url}}/static/js/neiye.js"></script>
+
+<script type="text/javascript" src="{{site_mes.url}}/static/js/jquery.waypoints.min.js"></script>
+<script type="text/javascript" src="{{site_mes.url}}/static/js/jquery.countup.min.js"></script>
+<script type="text/javascript">$('.count-title').countUp();</script>
+
+<link rel="stylesheet" type="text/css" href="{{site_mes.url}}/static/css/baguettebox.min.css" />
+<script type="text/javascript" src="{{site_mes.url}}/static/js/baguettebox.min.js"></script>
+<script type="text/javascript">
+    baguetteBox.run('.baguetteBoxOne', {animation: 'fadeIn',});
+</script>
+
+</body>
+</html>
+{% endlineless %}

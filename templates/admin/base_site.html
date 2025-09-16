@@ -1,0 +1,13 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block title %} 码良科技 | CMS管理系统{% endblock %}
+{% block extrahead %}
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+{% endblock %}
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}"><img src="{% static 'sxnew.svg' %}" height=33px"; style=" margin:3px -15px;" /></a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

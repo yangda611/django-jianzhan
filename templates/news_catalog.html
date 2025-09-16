@@ -1,0 +1,160 @@
+{% load myfilter %}{% lineless %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>{{ news_c_obj.title }}-{{ site_mes.name }}</title>
+    <meta name="keywords" content="{{ news_c_obj.keywords }}" />
+    <meta name="description" content="{{ news_c_obj.describe }}" />
+    {% include 'meta.html' %}
+    <link rel="stylesheet" href="{{site_mes.url}}/static/css/neiye.css" type="text/css" />
+<script type="application/ld+json">
+{
+    "@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+    "@id": "{{site_mes.url}}{{news_c_obj.get_absolute_url}}",
+    "title": "{{news_c_obj.title}}-{{ site_mes.name }}",
+    "description":"{{news_c_obj.describe}}",
+    "upDate":"{{n_time|date:'Y-m-d\TH:i:s'}}",
+}
+</script>
+{% include 'footjs.html' %}
+</head>
+<body>
+{% include 'header.html' %}
+
+<div class="lksy_nybanner lksy_banner">
+    <img src="{{site_mes.url}}/static/images/banner_news.webp" title="{{ news_c_obj.name }}" alt="{{ news_c_obj.name }}" />
+    <div class="lksy_text translate_y">
+        <p>{{ news_c_obj.name }}</p>
+        <div class="lksy_position">
+            <a href="{{site_mes.url}}/">首页</a> 
+            {% if news_c_obj.category.category %}
+            <a href="{{site_mes.url}}{{ news_c_obj.category.category.get_absolute_url }}">{{ news_c_obj.category.category.name }}</a> 
+            {% endif %}
+            {% if news_c_obj.category %}
+            <a href="{{site_mes.url}}{{ news_c_obj.category.get_absolute_url }}">{{ news_c_obj.category.name }}</a> 
+            {% endif %}
+            <a href="{{site_mes.url}}{{ news_c_obj.get_absolute_url }}">{{ news_c_obj.name }}</a>
+        </div>
+    </div>
+</div>
+
+{%if news_c_obj.id == 19%}
+<div class="lksy_caselist">
+    <div class="container">
+        <ul class="clearfix baguetteBoxOne">
+            {%for row in page %}
+            <li>
+                {%if row.small_image == ''%}
+                <a href="{{site_mes.url}}/static/Image/news_img.jpg" title="{{row.name}}">
+                {%else%}
+                <a href="{{site_mes.url}}/media/{{ row.small_image }}" title="{{row.name}}">
+                {%endif%}
+                    <div class="lksy_pic scale_img">
+                        {%if row.small_image == ''%}
+                        <img class="de3" src="{{site_mes.url}}/static/Image/news_img.jpg" alt="{{row.name}}" title="{{row.name}}" />
+                        {%else%}
+                        <img class="de3" src="{{site_mes.url}}/media/{{ row.small_image }}" alt="{{row.name}}" title="{{row.name}}" />
+                        {%endif%}
+                    </div>
+                    <div class="lksy_text">
+                        <div class="lksy_tit">{{ row.name }}</div>
+                        <p>{{ row.summary }}</p>
+                        <span class="de3">查看更多 &gt;&gt;</span>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {%if is_paginated%}
+        <div class="manu">
+            {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}"><</a>
+            {% else %}
+            <span class="disabled"><</span>
+            {% endif %}
+            {% for p in page_range %}
+            {% if p == page.number %}
+            <span class="current">{{ p }}</span>
+            {%elif p != '…'%}
+            <a href="?page={{ p }}">{{ p }}</a>
+            {% endif %}
+            {% endfor %}
+            {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">></a>
+            {% else %}
+            <span class="disabled">></span>
+            {% endif %}
+        </div>
+        {%endif%}
+    </div>
+</div>
+{%else%}
+<div class="lksy_news_list">
+    <div class="container">
+        <ul class="clearfix">
+            {% for row in page %}
+            <li class="clearfix">
+                <div class="lksy_nl_left">
+                    <div class="lksy_pic">
+                        {%if row.small_image == ''%}
+                        <img src="{{site_mes.url}}/static/Image/news_img.jpg" alt="{{row.name}}" title="{{row.name}}" />
+                        {%else%}
+                        <img src="{{site_mes.url}}/media/{{ row.small_image }}" alt="{{row.name}}" title="{{row.name}}" />
+                        {%endif%}
+                    </div>
+                </div>
+                <div class="lksy_nl_right clearfix">
+                    <a href="{{site_mes.url}}{{row.get_absolute_url}}" title="{{row.name}}">
+                        <div class="lksy_news_text">
+                            <p>{{row.name}}</p>
+                            <p>{{row.canshu | safe}}</p>
+                        </div>
+                        <div class="lksy_news_date">
+                            <span>{{row.created_time|date:"Y-m-d"}}</span>
+                            <em>查看更多</em>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {%if is_paginated%}
+        <div class="manu">
+            {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}"><</a>
+            {% else %}
+            <span class="disabled"><</span>
+            {% endif %}
+            {% for p in page_range %}
+            {% if p == page.number %}
+            <span class="current">{{ p }}</span>
+            {%elif p != '…'%}
+            <a href="?page={{ p }}">{{ p }}</a>
+            {% endif %}
+            {% endfor %}
+            {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">></a>
+            {% else %}
+            <span class="disabled">></span>
+            {% endif %}
+        </div>
+        {%endif%}
+    </div>
+</div>
+{%endif%}
+
+{% include 'foot.html' %}
+
+{% include 'js.html' %}
+<script type="text/javascript" src="{{site_mes.url}}/static/js/neiye.js"></script>
+<link rel="stylesheet" type="text/css" href="{{site_mes.url}}/static/css/baguettebox.min.css" />
+<script type="text/javascript" src="{{site_mes.url}}/static/js/baguettebox.min.js"></script>
+<script type="text/javascript">
+    baguetteBox.run('.baguetteBoxOne', {animation: 'fadeIn',});
+</script>
+</body>
+</html>
+{% endlineless %}

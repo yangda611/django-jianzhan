@@ -1,0 +1,56 @@
+{% load myfilter %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="applicable-device" content="pc,mobile">
+<title>网站地图-{{ site_mes.name }}</title>
+<meta name="keywords" content="{{ site_mes.keywords }}" />
+<meta name="description" content="{{ site_mes.describe }}" />
+<link rel="icon" href="{{site_mes.url}}/media/{{ site_mes.image }}" type="image/png">
+{% include 'meta.html' %}
+<link href="{{site_mes.url}}/static/css/sitemap.css" type="text/css" rel="stylesheet">
+
+</head>
+<body class="body_ref">
+{% include 'head.html' %}
+<div class="sitemap">
+    <div class="container">
+        <div class="st_li">
+            <div class="st_tit"><a href="{{site_mes.url}}">网站首页</a></div>
+        </div>
+        <div class="st_li">
+            <div class="st_tit"><a href="{{ site_mes.url }}/cxnm.html" title="成型内膜">成型内膜</a></div>
+        </div>
+        <div class="st_li">
+            <div class="st_tit"><a href="{{ site_mes.url }}/product.html" title="产品中心">产品中心</a></div>
+            <div class="st_a clearfix">
+                {% for row in comm_pro_c %}
+                <a href="{{site_mes.url}}{{row.get_absolute_url}}" title="{{ row.name }}">{{ row.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="st_li">
+            <div class="st_tit"><a href="{{site_mes.url}}/d/gongyi.html" title="生产工艺">生产工艺</a></div>
+        </div>
+        <div class="st_li">
+            <div class="st_tit"><a href="{{site_mes.url}}/d/qywh.html" title="企业文化">企业文化</a></div>
+        </div>
+        <div class="st_li">
+            <div class="st_tit"><a href="{{site_mes.url}}/a/news.html" title="新闻中心">新闻中心</a></div>
+            <div class="st_a clearfix">
+                {% for row in comm_news_c %}
+                <a href="{{site_mes.url}}{{row.get_absolute_url}}" title="{{ row.name }}">{{ row.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="st_li">
+            <div class="st_tit"><a href="{{site_mes.url}}/d/contact.html" title="联系我们">联系我们</a></div>
+        </div>
+    </div>
+</div>
+{% include 'foot.html' %}
+</body>
+</html>
+{% include 'footjs.html' %}

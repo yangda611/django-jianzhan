@@ -1,0 +1,106 @@
+{% load myfilter %}{% lineless %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>{{ goods_obj.title }}-{{ site_mes.name }}</title>
+    <meta name="keywords" content="{{ goods_obj.keywords }}" />
+    <meta name="description" content="{{ goods_obj.describe }}" />
+    {% include 'meta.html' %}
+    <link rel="stylesheet" href="{{site_mes.url}}/static/css/neiye.css" type="text/css" />
+<script type="application/ld+json">
+{
+    "@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+    "@id": "{{site_mes.url}}{{goods_obj.get_absolute_url}}",
+    "title": "{{goods_obj.title}}-{{ site_mes.name }}",
+    "images":["{{site_mes.url}}/media/{{ goods_obj.goodsimage_set.filter.first.images }}"],
+    "description":"{{goods_obj.describe}}",
+    "pubDate":"{{goods_obj.created_time|date:'Y-m-d\TH:i:s'}}",
+    "upDate":"{{goods_obj.updated_time|date:'Y-m-d\TH:i:s'}}",
+}
+</script>
+{% include 'footjs.html' %}
+</head>
+<body>
+{% include 'header.html' %}
+<div class="lksy_nybanner lksy_banner">
+    <img src="{{site_mes.url}}/static/images/banner_pro.webp" title="{{ goods_c_obj.name }}" alt="{{ goods_c_obj.name }}" />
+    <div class="lksy_text translate_y">
+        <p>{{ goods_c_obj.name }}</p>
+        <div class="lksy_position">
+            <a href="{{site_mes.url}}/">首页</a>  {% if goods_c_obj.category.category %}
+            <a href="{{site_mes.url}}{{ goods_c_obj.category.category.get_absolute_url }}">{{ goods_c_obj.category.category.name }}</a> 
+            {% endif %}
+            {% if goods_c_obj.category %}
+            <a href="{{site_mes.url}}{{ goods_c_obj.category.get_absolute_url }}">{{ goods_c_obj.category.name }}</a> 
+            {% endif %}
+            <a href="{{site_mes.url}}{{ goods_c_obj.get_absolute_url }}">{{ goods_c_obj.name }}</a>
+        </div>
+    </div>
+</div>
+
+<div class="lesy_propage">
+    <div class="container">
+        <div class="lesy_propage_t">
+            <div class="lesy_propage_l">
+                <img class="cloudzoom" src="{{site_mes.url}}/media/{{goods_obj.goodsimage_set.filter.first.images}}" data-cloudzoom="zoomImage: '{{site_mes.url}}/media/{{goods_obj.goodsimage_set.filter.first.images}}'" />
+                <div class="gallery">
+                    {%for picrow in goods_obj.goodsimage_set.filter%}
+                    <img class='cloudzoom-gallery' src="{{site_mes.url}}/media/{{picrow.images}}" data-cloudzoom="useZoom: '.cloudzoom', image: '{{site_mes.url}}/media/{{picrow.images}}', zoomImage: '{{site_mes.url}}/media/{{picrow.images}}' " >
+                    {%endfor%}
+                </div>
+            </div>
+            <div class="lesy_propage_r">
+                <h1>{{goods_obj.name}}</h1>
+                <div class="lksy_line"></div>
+                <div class="lksy_dec">
+                    {% for pp in goods_obj.summary|safe|sp %}
+                    <p>{{ pp }}</p>
+                    {% endfor %}
+                </div>
+                <div class="lksx_more"><a class="lksy_mbut de5" href="{{site_mes.url}}/d/contact.html" title="Online Message">Online Message</a></div>
+            </div>
+        </div>
+
+        <div class="lesy_propage_b">
+            <div class="lesy_propage_tit">Detailed Information</div>
+            <div class="lksy_newspage_c">
+                {{goods_obj.content|safe}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="lksy_pro_related">
+    <div class="container">
+        <div class="lksy_title">
+            <p>选择我们</p>
+            <div class="lksy_tit">相关产品</div>
+        </div>
+        <ul class="clearfix lksy_prolist">
+            {%for row in same_tag_goods%}
+            <li>
+                <a class="de3" href="{{site_mes.url}}{{row.get_absolute_url}}" title="{{row.name}}">
+                    <div class="lksy_pic">
+                        <img src="{{site_mes.url}}/media/{{row.goodsimage_set.filter.first.images}}" title="{{row.goodsimage_set.filter.first.alt}}" alt="{{row.goodsimage_set.filter.first.alt}}" />
+                    </div>
+                    <p>{{row.name}}</p>
+                </a>
+            </li>
+            {%endfor%}
+        </ul>
+    </div>
+</div>
+
+{% include 'foot.html' %}
+
+{% include 'js.html' %}
+<script type="text/javascript" src="{{site_mes.url}}/static/js/neiye.js"></script>
+
+<script type="text/javascript" src="{{site_mes.url}}/static/js/cloudzoom.js"></script>
+<script type="text/javascript">CloudZoom.quickStart();</script>
+</body>
+</html>
+{% endlineless %}

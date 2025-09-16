@@ -1,0 +1,381 @@
+{% load myfilter %}{% lineless %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>{{ site_mes.title }}</title>
+    <meta name="keywords" content="{{ site_mes.keywords }}" />
+    <meta name="description" content="{{ site_mes.describe }}" />
+    {% include 'meta.html' %}
+    <link rel="stylesheet" href="{{site_mes.url}}/static/css/index.css" type="text/css" />
+    {% include 'footjs.html' %}
+</head>
+<body>
+{% include 'header.html' %}
+<div class="lksy_banner swiper">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="{{site_mes.url}}/static/images/banner1.webp" title="OEM/ODM专业办公家具" alt="OEM/ODM专业办公家具" />
+            <div class="lksy_text lt5">
+                <p>OEM/ODM专业办公家具</p>
+                <p>
+                    <span>设计</span> 和制造公司
+                    <i>
+                        <svg width="272" height="35" viewBox="0 0 272 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.5 29.4961C16 34.5914 32.2788 32.7642 46 29.4961C64 25.209 85 6.57197 74 3.00552C63 -0.560938 23.9842 25.2398 68.5 32.044C88.5 35.1009 110.5 21.3611 136.5 12.4897C162.5 3.61835 184.124 4.28516 191.5 12.4897C204.5 26.9498 164.643 35.6095 166.5 22.3645C168.357 9.11946 230 9.11946 269.5 21.3456" stroke="#EE8206" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                    </i>
+                </p>
+                <div class="lksx_more">
+                    <a class="lksy_mbut de5" href="{{site_mes.url}}/products.html" title="发现更多">发现更多</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <img src="{{site_mes.url}}/static/images/banner2.webp" title="钢制储物柜" alt="钢制储物柜" />
+            <div class="lksy_text lt5">
+                <p>莱客上阳</p>
+                <p>
+                    <span>钢制储物柜</span>
+                    <i>
+                        <svg width="272" height="35" viewBox="0 0 272 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.5 29.4961C16 34.5914 32.2788 32.7642 46 29.4961C64 25.209 85 6.57197 74 3.00552C63 -0.560938 23.9842 25.2398 68.5 32.044C88.5 35.1009 110.5 21.3611 136.5 12.4897C162.5 3.61835 184.124 4.28516 191.5 12.4897C204.5 26.9498 164.643 35.6095 166.5 22.3645C168.357 9.11946 230 9.11946 269.5 21.3456" stroke="#EE8206" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                    </i>
+                </p>
+                <div class="lksx_more">
+                    <a class="lksy_mbut de5" href="{{site_mes.url}}/jiatingjiaju.html" title="发现更多">发现更多</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <img src="{{site_mes.url}}/static/images/banner3.webp" title="文件柜" alt="文件柜" />
+            <div class="lksy_text lt5">
+                <p>莱客上阳</p>
+                <p>
+                    <span>文件柜</span>
+                    <i>
+                        <svg width="272" height="35" viewBox="0 0 272 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.5 29.4961C16 34.5914 32.2788 32.7642 46 29.4961C64 25.209 85 6.57197 74 3.00552C63 -0.560938 23.9842 25.2398 68.5 32.044C88.5 35.1009 110.5 21.3611 136.5 12.4897C162.5 3.61835 184.124 4.28516 191.5 12.4897C204.5 26.9498 164.643 35.6095 166.5 22.3645C168.357 9.11946 230 9.11946 269.5 21.3456" stroke="#EE8206" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                    </i>
+                </p>
+                <div class="lksx_more">
+                    <a class="lksy_mbut de5" href="{{site_mes.url}}/bangongjiaju.html" title="发现更多">发现更多</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <img src="{{site_mes.url}}/static/images/banner4.webp" title="印花柜" alt="印花柜" />
+            <div class="lksy_text lt5">
+                <p>莱客上阳</p>
+                <p>
+                    <span>印花柜</span>
+                    <i>
+                        <svg width="272" height="35" viewBox="0 0 272 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.5 29.4961C16 34.5914 32.2788 32.7642 46 29.4961C64 25.209 85 6.57197 74 3.00552C63 -0.560938 23.9842 25.2398 68.5 32.044C88.5 35.1009 110.5 21.3611 136.5 12.4897C162.5 3.61835 184.124 4.28516 191.5 12.4897C204.5 26.9498 164.643 35.6095 166.5 22.3645C168.357 9.11946 230 9.11946 269.5 21.3456" stroke="#EE8206" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                    </i>
+                </p>
+                <div class="lksx_more">
+                    <a class="lksy_mbut de5" href="{{site_mes.url}}/jinshuyichu.html" title="发现更多">发现更多</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+
+<div class="lksy_pro">
+    <div class="container">
+        <div class="lksy_title">
+            <p>产品展示</p>
+            <div class="lksy_tit">我们的产品和解决方案</div>
+            <a class="lksy_tmore de3" href="{{site_mes.url}}/products.html" title="查看更多">查看更多</a>
+        </div>
+        <div class="lksy_pro_c">
+            <ul class="clearfix lksy_prolist">
+                {% for row in comm_pro_c %}
+                {% if forloop.counter0 < 8 %}
+                <li>
+                    <a class="de3" href="{{site_mes.url}}{{ row.get_absolute_url }}" title="{{row.name}}">
+                        <div class="lksy_pic">
+                            <img src="{{site_mes.url}}/media/{{ row.image }}" title="{{row.name}}" alt="{{row.name}}" />
+                        </div>
+                        <p>{{row.name}}</p>
+                    </a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="lksx_more">
+            <a class="lksy_mbut de5" href="{{site_mes.url}}/products.html" title="查看更多">查看更多</a>
+            <a class="lksy_mbut de5" href="{{site_mes.url}}/d/contact.html" title="联系我们">联系我们</a>
+        </div>
+    </div>
+</div>
+
+<div class="lksy_liucheng">
+    <div class="container">
+        <ul>
+            <li>
+                <div class="lksy_icon de3"></div>
+                <p>在线咨询</p>
+            </li>
+            <li>
+                <div class="lksy_icon de3"></div>
+                <p>产品报价</p>
+            </li>
+            <li>
+                <div class="lksy_icon de3"></div>
+                <p>订单确认</p>
+            </li>
+            <li>
+                <div class="lksy_icon de3"></div>
+                <p>付定金</p>
+            </li>
+            <li>
+                <div class="lksy_icon de3"></div>
+                <p>订单生产</p>
+            </li>
+            <li>
+                <div class="lksy_icon de3"></div>
+                <p>订单装运</p>
+            </li>
+            <li>
+                <div class="lksy_icon de3"></div>
+                <p>支付尾款</p>
+            </li>
+            <li>
+                <div class="lksy_icon de3"></div>
+                <p>售后服务</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="lksy_video">
+    <div class="container">
+        <div class="lksy_title">
+            <p>我们的特色产品</p>
+            <div class="lksy_tit">印花柜</div>
+        </div>
+        <div class="lksy_video_c">
+            <iframe height='498' width='510' src='https://player.youku.com/embed/XNjQwMzUwNzQzMg==' frameborder=0 'allowfullscreen'></iframe>
+        </div>
+    </div>
+</div>
+
+<div class="lksy_about">
+    <div class="container clearfix">
+        <div class="lksy_about_l">
+            <div class="lksy_img1">
+                <img src="{{site_mes.url}}/static/images/about1.webp" title="关于莱客" alt="关于莱客" />
+            </div>
+            <div class="lksy_img2">
+                <img src="{{site_mes.url}}/static/images/about2.webp" title="关于莱客" alt="关于莱客" />
+            </div>
+        </div>
+        <div class="lksy_about_r">
+            <div class="lksy_title">
+                <p>关于莱客</p>
+            </div>
+            <div class="lksy_about_info">
+                <p>洛阳市莱客上阳进出口贸易有限公司位于中国河南省洛阳市。本公司是集设计，生产，销售于一体的办公家具系列产品生产厂家。</p>
+                <p>本公司产品以现代简约风为主，涵盖：各种拆装文件柜系列、更衣柜系列、卡箱柜系列、置物架系列，床等钢制办公家具。我们拥有先进的设备和严格的质量管控，经过多年的奋斗，赢得了国内外客户的好评。</p>
+            </div>
+            <ul class="lksy_about_num">
+                <li>
+                    <p>占地总面积</p>
+                    <div class="lksy_tit"><span class="count-title">42573</span>㎡</div>
+                </li>
+                <li>
+                    <p>标准化工厂</p>
+                    <div class="lksy_tit"><span class="count-title">33150</span>㎡</div>
+                </li>
+                <li>
+                    <p>优秀员工</p>
+                    <div class="lksy_tit"><span class="count-title">140</span>+</div>
+                </li>
+            </ul>
+            <div class="lksx_more"><a class="lksy_mbut de5" href="{{site_mes.url}}/d/about.html" title="发现更多">发现更多</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="lksy_process_b">
+    <div class="container">
+        <div class="lksy_text">
+            <p>我们提供</p>
+            <p>ODM/OEM服务</p>
+            <p>全钢制办公家具</p>
+        </div>
+        <img class="de7" id="lksy_process_img" src="{{site_mes.url}}/static/images/process.webp" title="我们提供" alt="我们提供" />
+    </div>
+</div>
+
+<div class="lksy_choose">
+    <div class="container">
+        <div class="lksy_title">
+            <div class="lksy_tit">企业优势</div>
+        </div>
+        <ul class="lksy_choose_c clearfix">
+            <li class="de5">
+                <i class="icon"></i>
+                <div class="lksy_tit">专业团队</div>
+                <p>10名以上资深工程师技术支持始终为您提供技术支持，30多名至少6年销售经验的专业团队，确保即时响应与高效服务。</p>
+            </li>
+            <li class="de5">
+                <i class="icon"></i>
+                <div class="lksy_tit">定制服务</div>
+                <p>我们可为您提供定制服务，15天完成定制样品。我们的设计师将尽力满足您营销发展的所有个性化需求。</p>
+            </li>
+            <li class="de5">
+                <i class="icon"></i>
+                <div class="lksy_tit">快速交付</div>
+                <p>通常在收到定金后35天内高效完成产品生产，确保准时交付。对于紧急订单，我们的团队将灵活调整生产计划，以满足您的需求。</p>
+            </li>
+            <li class="de5">
+                <i class="icon"></i>
+                <div class="lksy_tit">贴心服务</div>
+                <p>24小时在线服务，确保在收到您的反馈后，12小时内制定计划。</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="lksy_process">
+    <div class="container">
+        <div class="lksy_mtit">生产过程</div>
+        <div class="lksy_process_c">
+            <ul>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>开卷</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>切割</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>打孔</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>折弯</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>焊接</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>喷涂</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>质检</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>包装与存储</p>
+                </li>
+            </ul>
+            <div class="lksx_more"><a class="lksy_mbut de5" href="{{site_mes.url}}/d/service.html" title="查看更多">查看更多</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="lksy_news">
+    <div class="container">
+        <div class="lksy_title">
+            <p>莱客新闻</p>
+            <div class="lksy_tit">与您一起进步</div>
+        </div>
+        <div class="lksy_news_c">
+            <div class="lksy_news_xw">
+                <div class="lksy_tit">新闻资讯</div>
+                <ul class="clearfix">
+                    {%for row in new_list %}
+                    <li>
+                        <a href="{{site_mes.url}}{{row.get_absolute_url}}" title="{{row.name}}">
+                            <div class="lksy_time"><span>{{row.created_time|date:"d"}}</span>{{row.created_time|date:"M.d"}}</div>
+                            <p>{{row.name}}</p>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="lksy_more"><a class="de3" href="{{site_mes.url}}/a/news.html" title="查看更多">查看更多 ++</a></div>
+            </div>
+            <div class="lksy_news_zh">
+                <div class="lksy_tit lksy_tit1">展会信息</div>
+                <div class="swiper">
+                    <div class="swiper-wrapper baguetteBoxOne">
+                        {%for row in new_list1 %}
+                        <div class="swiper-slide">
+                            {%if row.small_image == ''%}
+                            <a href="{{site_mes.url}}{{row.content|getimage}}" title="{{row.name}}">
+                            {%else%}
+                            <a href="{{site_mes.url}}/media/{{ row.small_image }}" title="{{row.name}}">
+                            {%endif%}
+                                <div class="lksy_pic">
+                                    {%if row.small_image == ''%}
+                                    <img src="{{site_mes.url}}{{row.content|getimage}}" alt="{{row.name}}" title="{{row.name}}" />
+                                    {%else%}
+                                    <img src="{{site_mes.url}}/media/{{ row.small_image }}" alt="{{row.name}}" title="{{row.name}}" />
+                                    {%endif%}
+                                </div>
+                                <div class="lksy_text">
+                                    <p>{{row.name}}</p>
+                                    <div class="lksy_time"><span>{{row.created_time|date:"d"}}</span>{{row.created_time|date:"M.d"}}</div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="lksy_news_case">
+                <div class="lksy_tit lksy_tit1">案例展示</div>
+                <div class="swiper">
+                    <div class="swiper-wrapper baguetteBoxOne">
+                        {% for row in case_List %}
+                        <div class="swiper-slide">
+                            <a href="{{site_mes.url}}/media/{{ row.tuwenimage_set.filter.first.images }}" title="{{row.name}}">
+                                <div class="lksy_pic">
+                                    <img src="{{site_mes.url}}/media/{{ row.tuwenimage_set.filter.first.images }}" title="{{ row.name }}" alt="{{ row.name }}" />
+                                </div>
+                            </a>
+                            <div class="lksy_more"><a class="de3" href="{{site_mes.url}}{{row.get_absolute_url}}" title="查看更多">查看更多 ++</a></div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'foot.html' %}
+<script type="text/javascript" src="{{site_mes.url}}/static/js/gsap.min.js"></script>
+<script type="text/javascript" src="{{site_mes.url}}/static/js/ScrollTrigger.min.js"></script>
+{% include 'js.html' %}
+
+<script type="text/javascript" src="{{site_mes.url}}/static/js/index.js"></script>
+<script type="text/javascript" src="{{site_mes.url}}/static/js/jquery.waypoints.min.js"></script>
+<script type="text/javascript" src="{{site_mes.url}}/static/js/jquery.countup.min.js"></script>
+<script type="text/javascript">$('.count-title').countUp();</script>
+
+<link rel="stylesheet" type="text/css" href="{{site_mes.url}}/static/css/baguettebox.min.css" />
+<script type="text/javascript" src="{{site_mes.url}}/static/js/baguettebox.min.js"></script>
+<script type="text/javascript">
+    baguetteBox.run('.baguetteBoxOne', {animation: 'fadeIn',});
+</script>
+</body>
+</html>
+{% endlineless %}

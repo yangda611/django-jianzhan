@@ -1,0 +1,90 @@
+{% extends "admin/caidan.html" %}
+{% load i18n static %}
+
+
+{% block content %}
+
+
+
+<body>
+</br>
+<style>
+    #viewbaidu{height:400px;}
+</style>
+<div id="viewbaidu" ></div>
+<script type="text/javascript" src="/static/admin/js/echarts.min.js"></script>
+<script type="text/javascript">
+var dom = document.getElementById("viewbaidu");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+
+
+option = {
+  title: {
+    text: '百度推送返回数据'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['新增页面推送']
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: {{ all_day|safe }},
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: '新增页面推送',
+      type: 'line',
+      color: '#73c0de',
+      stack: 'Total',
+      label: {
+        show: true,
+        position: 'top'
+      },
+      areaStyle: {},
+      emphasis: {
+        focus: 'series'
+      },
+      data: {{ all_num|safe }},
+    }
+  ]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+        </script>
+</body>
+{% endblock %}
+

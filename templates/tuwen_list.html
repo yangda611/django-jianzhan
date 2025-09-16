@@ -1,0 +1,109 @@
+{% load myfilter %}{% lineless %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>{{ t_c_obj.title }}-{{ site_mes.name }}</title>
+    <meta name="keywords" content="{{ t_c_obj.keywords }}" />
+    <meta name="description" content="{{ t_c_obj.describe }}" />
+    {% include 'meta.html' %}
+    <link rel="stylesheet" href="{{site_mes.url}}/static/css/neiye.css" type="text/css" />
+<script type="application/ld+json">
+{
+    "@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+    "@id": "{{site_mes.url}}{{t_c_obj.get_absolute_url}}",
+    "title": "{{ t_c_obj.name }}-{{ site_mes.name }}",
+    "description":"{{t_c_obj.describe}}",
+    "upDate":"{{t_time|date:'Y-m-d\TH:i:s'}}",
+}
+</script>
+{% include 'footjs.html' %}
+</head>
+<body>
+{% include 'header.html' %}
+
+<div class="lksy_nybanner lksy_banner">
+    <img src="{{site_mes.url}}/static/images/banner_news.webp" title="{{ t_c_obj.name }}" alt="{{ t_c_obj.name }}" />
+    <div class="lksy_text translate_y">
+        <p>{{ t_c_obj.name }}</p>
+        <div class="lksy_position">
+            <a href="{{site_mes.url}}/">首页</a>  <a href="{{site_mes.url}}{{ t_c_obj.get_absolute_url }}">{{ t_c_obj.name }}</a>
+        </div>
+    </div>
+</div>
+
+<div class="lksy_caselist">
+    <div class="container">
+        {% if t_c_obj.is_sitemap == 0 %}
+        <ul class="clearfix baguetteBoxOne">
+            {%for item in page %}
+            <li>
+                <a href="{{site_mes.url}}/media/{{ item.0.tuwenimage_set.filter.first.images }}" title="{{item.0.name}}">
+                    <div class="lksy_pic scale_img">
+                        <img class="de3" src="{{site_mes.url}}/media/{{ item.0.tuwenimage_set.filter.first.images }}" title="{{item.0.name}}" alt="{{item.0.name}}" />
+                    </div>
+                    <div class="lksy_text">
+                        <div class="lksy_tit">{{ item.0.name }}</div>
+                        <p>{{ item.0.summary }}</p>
+                        <span class="de3">查看更多 &gt;&gt;</span>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <ul class="clearfix">
+            {%for item in page %}
+            <li>
+                <a href="{{site_mes.url}}{{item.0.get_absolute_url}}" title="{{ item.0.name }}">
+                    <div class="lksy_pic scale_img">
+                        <img class="de3" src="{{site_mes.url}}/media/{{ item.0.tuwenimage_set.filter.first.images }}" title="{{item.0.name}}" alt="{{item.0.name}}" />
+                    </div>
+                    <div class="lksy_text">
+                        <div class="lksy_tit">{{ item.0.name }}</div>
+                        <p>{{ item.0.summary }}</p>
+                        <span class="de3">查看更多 &gt;&gt;</span>
+                    </div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {%if is_paginated%}
+        <div class="manu">
+            {% if page.has_previous %}
+            <a href="?page={{ page.previous_page_number }}"><</a>
+            {% else %}
+            <span class="disabled"><</span>
+            {% endif %}
+            {% for p in page_range %}
+            {% if p == page.number %}
+            <span class="current">{{ p }}</span>
+            {%elif p != '…'%}
+            <a href="?page={{ p }}">{{ p }}</a>
+            {% endif %}
+            {% endfor %}
+            {% if page.has_next %}
+            <a href="?page={{ page.next_page_number }}">></a>
+            {% else %}
+            <span class="disabled">></span>
+            {% endif %}
+        </div>
+        {%endif%}
+    </div>
+</div>
+
+{% include 'foot.html' %}
+
+{% include 'js.html' %}
+<script type="text/javascript" src="{{site_mes.url}}/static/js/neiye.js"></script>
+<link rel="stylesheet" type="text/css" href="{{site_mes.url}}/static/css/baguettebox.min.css" />
+<script type="text/javascript" src="{{site_mes.url}}/static/js/baguettebox.min.js"></script>
+<script type="text/javascript">
+    baguetteBox.run('.baguetteBoxOne', {animation: 'fadeIn',});
+</script>
+</body>
+</html>
+{% endlineless %}

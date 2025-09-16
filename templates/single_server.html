@@ -1,0 +1,178 @@
+{% load myfilter %}{% lineless %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="applicable-device" content="pc,mobile">
+    <title>{{ page_obj.title }}-{{ site_mes.name }}</title>
+    <meta name="keywords" content="{{ page_obj.keywords }}" />
+    <meta name="description" content="{{ page_obj.describe }}" />
+    {% include 'meta.html' %}
+    <link rel="stylesheet" href="{{site_mes.url}}/static/css/neiye.css" type="text/css" />
+<script type="application/ld+json">
+{
+    "@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+    "@id": "{{site_mes.url}}{{page_obj.get_absolute_url}}",
+    "title": "{{page_obj.title}}-{{ site_mes.name }}",
+    "description":"{{page_obj.describe}}",
+    "upDate":"{{p_time|date:'Y-m-d\TH:i:s'}}",
+}
+</script>
+{% include 'footjs.html' %}
+</head>
+<body>
+{% include 'header.html' %}
+
+<div class="lksy_nybanner lksy_banner">
+    <img src="{{site_mes.url}}/static/images/banner_server.webp" title="{{ page_obj.name }}" alt="{{ page_obj.name }}" />
+    <div class="lksy_text translate_y">
+        <p>{{ page_obj.name }}</p>
+        <div class="lksy_position">
+            <a href="{{site_mes.url}}/">首页</a>  {{ page_obj.name }}
+        </div>
+    </div>
+</div>
+
+<div class="lksy_nprocess">
+    <div class="container">
+        <div class="lksy_title">
+            <p>洛阳市莱客上阳进出口贸易有限公司</p>
+            <div class="lksy_tit">生产过程</div>
+        </div>
+        <div class="lksy_nprocess_c">
+            <ul>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>开卷</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>切割</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>打孔</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>折弯</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>焊接</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>喷涂</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>质检</p>
+                </li>
+                <li class="de3">
+                    <i class="icon de5"></i>
+                    <p>包装与存储</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="lksy_standard">
+    <div class="container">
+        <div class="lksy_title">
+            <div class="lksy_tit">服务保证</div>
+        </div>
+        <div class="lksy_standard_c">
+            <p>24小时在线服务</p>
+            <p>样品订单交付周期：3至10天</p>
+            <p>订单交付周期：15-25天</p>
+            <p>5年保修让您在购买时安心。</p>
+            <p><br /></p>
+            <p>包装：产品包装结构经过专业设计和优化，邮购包装根据各地区的政策提供相应的解决方案，以满足需求。</p>
+        </div>
+    </div>
+</div>
+
+<div class="lksy_quality">
+    <div class="container">
+        <div class="lksy_title">
+            <p>洛阳市莱客上阳进出口贸易有限公司</p>
+            <div class="lksy_tit">质量控制</div>
+        </div>
+        <div class="lksy_quality_c">
+            <ul class="clearfix">
+                <li>
+                    <div class="lksy_pic">
+                        <img class="de5" src="{{site_mes.url}}/static/images/quality1.webp" title="进货检验" alt="进货检验" />
+                    </div>
+                    <div class="lksy_text de5">
+                        <div class="lksy_text_c t5">
+                            <div class="lksy_tit">进货检验</div>
+                            <p>钢制办公家具原材料及产品配件由检验人员按照国家有关标准进行检验，外装配件由专业质量检验人员进行检验。质量检验结果是供应商是否合格的重要依据。</p>
+                            <em></em>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="lksy_pic">
+                        <img class="de5" src="{{site_mes.url}}/static/images/quality2.webp" title="初检" alt="初检" />
+                    </div>
+                    <div class="lksy_text de5">
+                        <div class="lksy_text_c t5">
+                            <div class="lksy_tit">初检</div>
+                            <p>根据钢制办公家具的生产流程，在每个阶段开始生产之前，检查员将根据相应的检查程序选择前三种产品进行检查，并填写初次检查记录。若产品不合格，则需要返工，直到质量检查员确认产品无误后才能批量生产。</p>
+                            <em></em>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="lksy_pic">
+                        <img class="de5" src="{{site_mes.url}}/static/images/quality3.webp" title="互检" alt="互检" />
+                    </div>
+                    <div class="lksy_text de5">
+                        <div class="lksy_text_c t5">
+                            <div class="lksy_tit">互检</div>
+                            <p>按照生产工艺流程，下道工序操作人员应对上道工序传来的产品进行检验，检验合格后继续加工，发现不合格产品应及时反馈并告知相应操作人员。</p>
+                            <em></em>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="lksy_pic">
+                        <img class="de5" src="{{site_mes.url}}/static/images/quality4.webp" title="抽查" alt="抽查" />
+                    </div>
+                    <div class="lksy_text de5">
+                        <div class="lksy_text_c t5">
+                            <div class="lksy_tit">抽查</div>
+                            <p>生产过程中，专业质检员应配合生产主任、车间主任、质检主任对原材料和操作人员的初检和互检进行监督，按要求的百分比进行抽查，并将结果及时反馈给操作人员和相关部门负责人。</p>
+                            <em></em>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="lksy_pic">
+                        <img class="de5" src="{{site_mes.url}}/static/images/quality5.webp" title="终检" alt="终检" />
+                    </div>
+                    <div class="lksy_text de5">
+                        <div class="lksy_text_c t5">
+                            <div class="lksy_tit">终检</div>
+                            <p>终检人员应检查初步检验记录是否完整，并按百分比对成品进行组装检验，以检查产品特性是否符合要求，颜色和重量是否符合标准，配件是否齐全，确认无误后方可入库或发货。</p>
+                            <em></em>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+{% include 'foot.html' %}
+
+{% include 'js.html' %}
+<script type="text/javascript" src="{{site_mes.url}}/static/js/neiye.js"></script>
+</body>
+</html>
+{% endlineless %}

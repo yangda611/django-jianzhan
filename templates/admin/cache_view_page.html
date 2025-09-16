@@ -1,0 +1,45 @@
+{% extends "admin/caidan.html" %}
+{% load i18n static %}
+
+
+{% block content %}
+<!--{{ lists }}-->
+
+<head>
+
+    <link href="/static/keshihua/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="/static/keshihua/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<div>
+</br>
+<h1 class="h3 mb-1 text-gray-800">缓存管理</h1>
+<a href="/sxkjcms-admin/site_set/site/cache_set" class="btn btn-light btn-icon-split" style="margin-top:20px; font-size: 14px">
+<span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span>
+<span class="text">更新缓存</span>
+</a>
+
+</div>
+</br>
+
+<body>
+
+
+<p>当您点击更新缓存后： 程序会清除现有缓存数据，并重新生成全站的数据缓存，如果您在『网站配置』设置了缓存过期时间，那么在未到期之前，用户访问到的都是缓存数据。</p>
+<p>缓存过期时间：比如您设置了3天，在这3天时间里，当您更新网站或修改网站后，数据不会有变化，除非您清空缓存。 </p>
+<p>删除缓存：当缓存到期时间未到，而您希望立刻看到修改后的结果，可以手动点击删除缓存。</p>
+</br>
+<h6 style="color: #4e73df">缓存功能技巧：&nbsp&nbsp 设置合理的缓存到期时间，尽量让程序自动去删除缓存。</h6>
+</br>
+<!--------选择缓存时间结束--------->
+
+
+
+
+</body>
+
+
+
+
+{% endblock %}

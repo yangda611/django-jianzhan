@@ -1,0 +1,47 @@
+<footer>
+    <div class="lksy_foot">
+        <div class="container">
+            <div class="lksy_foot_c">
+                <div class="lksy_foot_l">
+                    <img src="{{site_mes.url}}/static/images/logo_h.svg" title="{{ site_mes.name }}" alt="{{ site_mes.name }}" />
+                    <div class="lksy_text">
+                        <p>{{site_mes.phone}}&nbsp;&nbsp;&nbsp;&nbsp;{{site_mes.tel}}</p>
+                        <p>{{site_mes.email}}</p>
+                        <p>{{site_mes.address}}</p>
+                    </div>
+                </div>
+                <div class="lksy_foot_z">
+                    <div class="lksy_tit">产品中心</div>
+                    <ul class="clearfix">
+                        {%for row in comm_pro_c%}
+                        <li><a href="{{site_mes.url}}{{ row.get_absolute_url }}" title="{{row.name}}">{{row.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="lksy_foot_r">
+                    <div class="lksy_tit">联系我们</div>
+                    <form method="post" id="footmes">
+                        {% csrf_token %}
+                        <input type="text" name="guest" id="guest" placeholder="您的姓名 *" />
+                        <input type="text" name="tel" id="tel" placeholder="您的电话 *" />
+                        <input type="text" name="email" id="email" placeholder="您的邮箱 *" />
+                        <input type="hide" name="content" id="content" />
+                        <div class="de3 lksy_foot_btn lksy_mbut">立即提交</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lksy_copyright">
+        <div class="container">
+            <p>Copyright © {{ site_mes.name }} 保留所有权利。
+            {%if site_mes.icp_num|default_if_none:"Empty"%}
+            <span><a href="{{site_mes.icp_url}}" rel="nofollow" target="_blank">{{site_mes.icp_num}}</a></span>
+            {%endif%}
+            {%if site_mes.ga_num|default_if_none:"Empty"%}
+            <span><a href="{{site_mes.ga_url}}" rel="nofollow" target="_blank">{{site_mes.ga_num}}</a></span>
+            {%endif%} 
+            </p>
+        </div>
+    </div>
+</footer>

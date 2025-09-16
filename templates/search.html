@@ -1,0 +1,62 @@
+{% load myfilter %}{% lineless %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="applicable-device"content="pc,mobile">
+<title>{% if search_value %}{{search_value}}{% else %}Site Search{% endif %}_{{site_mes.name}}</title>
+<meta name="keywords" content="{% if search_value %}{{search_value}}{% else %}Site Search{% endif %}" />
+<meta name="description" content="Enter the keywords you want to search here to search!" />
+{% include 'meta.html' %}
+<link href="{{site_mes.url}}/static/css/search.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="def">
+{% include 'header.html' %}
+<!--search_form-->
+<div class="search_form">
+    <div class="container">
+        <div class="sub_title">
+            <div class="s_t">SITE SEARCH</div>
+        </div>
+        <div class="sf_input clearfix">
+            <form method="GET" autocomplete="off" id="searchmes">
+                <input type="text" name="q" id="keyword" value="{{search_value}}" placeholder="keyword" />
+                <div class="s_btn">Search</div>
+            </form>
+            <script language="javascript">
+                $('.s_btn').click(function () {
+                    check('searchmes');
+                });
+            </script>
+        </div>
+        <p>Your search for <span>"{{search_value}}"</span> showed <span>{{search_data.0.count|add:search_data.1.count}}</span> results</p>
+    </div>
+</div>
+<!--search_result-->
+{% if search_data.0 or search_data.1 or search_data.2 %}
+<div class="search_result">
+    <div class="container">
+        <div class="sr_ul">
+            {% for row in search_data%}
+            {% for arow in row%}
+            <a href="{{site_mes.url}}{{ arow.get_absolute_url }}" title="{{arow.name}}" target="_blank" class="sr_li">
+                <p><span>{% if forloop.parentloop.counter == 1 %}Product{% elif forloop.parentloop.counter == 2 %}News{% endif %}</span>{{arow.name}}</p>
+                <p>{{arow.content | safe | cut:'&nbsp;' | cut:'&emsp;' | striptags | slice:"150"}}</p>
+            </a>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% include 'foot.html' %}
+{% include 'js.html' %}
+<script language="javascript">
+$('.s_btn').click(function () {
+    check();
+});
+</script>
+</body>
+</html>
+{% endlineless %}
