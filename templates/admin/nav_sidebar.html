@@ -1,5 +1,11 @@
 {% load i18n %}
-<button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="{% translate 'Toggle navigation' %}"></button>
-<nav class="sticky" id="nav-sidebar">
-  {% include 'admin/app_list.html' with app_list=available_apps show_changelinks=False %}
+<button class="sticky toggle-nav-sidebar dark-neumorphic" id="toggle-nav-sidebar" aria-label="{% translate 'Toggle navigation' %}">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</button>
+<nav class="sticky dark-neumorphic" id="nav-sidebar">
+  <div class="app-list dark-neumorphic">
+    {% include 'admin/app_list.html' with app_list=available_apps show_changelinks=False %}
+  </div>
 </nav>

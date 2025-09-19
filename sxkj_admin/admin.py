@@ -98,6 +98,14 @@ class MyAdminSite(admin.AdminSite):
                 tuwen_tag_num += 1
         tags_number = [goods_tag_num, news_tag_num, tuwen_tag_num]
 
+        # 添加文章数量和产品种类数据
+        news_count = News.objects.count()  # 文章总数
+        goods_count = Goods.objects.count()  # 产品总数
+        
+        # 添加产品分类、图文分类、图文数量数据
+        goods_catalog_count = GoodsCatalog.objects.count()  # 产品分类数量
+        news_catalog_count = NewsCatalog.objects.count()  # 图文分类数量
+        tuwen_count = TuWen.objects.count()  # 图文数量
 
         context = {
             **self.each_context(request),
@@ -109,6 +117,11 @@ class MyAdminSite(admin.AdminSite):
             'index_mes': index_mes,
             'tags_number': tags_number,
             'data_year_month': data_list_lasts,
+            'news_count': news_count,  # 文章数量
+            'goods_count': goods_count,  # 产品种类数量
+            'goods_catalog_count': goods_catalog_count,  # 产品分类数量
+            'news_catalog_count': news_catalog_count,  # 图文分类数量
+            'tuwen_count': tuwen_count,  # 图文数量
 
         }
 

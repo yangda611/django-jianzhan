@@ -14,23 +14,22 @@
 
 {% if not is_popup %}
 {% block breadcrumbs %}
-<div class="breadcrumbs">
+<div class="breadcrumbs dark-neumorphic">
 <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
-
 &rsaquo; {% if has_view_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
 &rsaquo; {% if add %}{% blocktranslate with name=opts.verbose_name %}Add {{ name }}{% endblocktranslate %}{% else %}{{ original|truncatewords:"18" }}{% endif %}
 </div>
 {% endblock %}
 {% endif %}
 
-{% block content %}<div id="content-main">
+{% block content %}<div id="content-main" class="fade-in dark-neumorphic">
 {% block object-tools %}
 {% if change %}{% if not is_popup %}
-  <ul class="object-tools">
+  <div class="object-tools">
     {% block object-tools-items %}
       {% change_form_object_tools %}
     {% endblock %}
-  </ul>
+  </div>
 {% endif %}{% endif %}
 {% endblock %}
 <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}{% if form_url %}action="{{ form_url }}" {% endif %}method="post" id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
@@ -39,9 +38,9 @@
 {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}">{% endif %}
 {% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
 {% if errors %}
-    <p class="errornote">
+    <div class="errornote messages dark-neumorphic">
     {% if errors|length == 1 %}{% translate "Please correct the error below." %}{% else %}{% translate "Please correct the errors below." %}{% endif %}
-    </p>
+    </div>
     {{ adminform.form.non_field_errors }}
 {% endif %}
 
@@ -61,7 +60,13 @@
 
 {% block after_related_objects %}{% endblock %}
 
-{% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
+{% block submit_buttons_bottom %}
+<div class="submit-row">
+  {% submit_row %}
+</div>
+{% endblock %}
+</div>
+</form>
 
 {% block admin_change_form_document_ready %}
     <script id="django-admin-form-add-constants"
@@ -76,6 +81,4 @@
 {# JavaScript for prepopulated fields #}
 {% prepopulated_fields_js %}
 
-</div>
-</form></div>
-{% endblock %}
+</div>{% endblock %}

@@ -1,0 +1,844 @@
+/* ===========================================
+   Django Admin 深色新拟态主题样式表
+
+   文件结构：
+   1. CSS变量定义 - 全局主题色彩和效果
+   2. 基础样式 - 页面整体布局
+   3. 页面头部样式 - Django Admin顶部导航栏
+   4. 面包屑导航样式 - 页面路径导航
+   5. 侧边栏导航样式 - Django Admin左侧导航栏
+   6. 仪表板卡片样式 - 首页数据统计卡片
+   7. 表单样式 - Django Admin表单页面
+   8. 表格样式 - 列表页面数据表格
+   9. 按钮样式 - 各种操作按钮
+   10. 消息提示样式 - 成功、警告、错误消息
+   11. 工具类样式 - 通用工具类
+
+   作用范围：整个Django Admin界面
+   =========================================== */
+
+/* ===========================================
+   CSS 变量定义 - 全局主题色彩和效果
+   作用范围：整个Django Admin界面
+   =========================================== */
+:root {
+  /* 深色主题背景色系 */
+  --nm-dark-bg: #1e1e2e;                    /* 主背景色 - 页面整体背景 */
+  --nm-dark-bg-secondary: #2d2d44;          /* 次要背景色 - 卡片、侧边栏背景 */
+  --nm-dark-bg-tertiary: #3a3a5a;           /* 第三级背景色 - 按钮、输入框背景 */
+
+  /* 深色主题文字色系 */
+  --nm-dark-text-primary: #f0f0f0;          /* 主要文字色 - 标题、重要文本 */
+  --nm-dark-text-secondary: #c0c0c0;        /* 次要文字色 - 描述文本、辅助信息 */
+  --nm-dark-text-tertiary: #a0a0a0;         /* 第三级文字色 - 占位符、禁用文本 */
+
+  /* 深色主题边框和装饰色 */
+  --nm-dark-border: #4a4a6a;                /* 边框色 - 分割线、边框 */
+  --nm-dark-shadow-light: rgba(255, 255, 255, 0.05);  /* 亮阴影 - 高光效果 */
+  --nm-dark-shadow-dark: rgba(0, 0, 0, 0.3);          /* 暗阴影 - 深度效果 */
+
+  /* 深色主题强调色系 */
+  --nm-dark-accent-primary: #6c63ff;        /* 主强调色 - 链接、按钮、选中状态 */
+  --nm-dark-accent-secondary: #4a44b5;      /* 次要强调色 - 悬停状态 */
+  --nm-dark-accent-tertiary: #3a348a;       /* 第三级强调色 - 激活状态 */
+
+  /* 深色主题功能色系 */
+  --nm-dark-success: #A9DFD8;               /* 成功色 - 成功消息、确认按钮 */
+  --nm-dark-warning: #FCB859;               /* 警告色 - 警告消息、提醒 */
+  --nm-dark-error: #F2C8ED;                 /* 错误色 - 错误消息、删除按钮 */
+  --nm-dark-info: #28AEF3;                  /* 信息色 - 信息提示、帮助文本 */
+
+  /* 新拟态效果阴影定义 */
+  --nm-inset-shadow: inset 2px 2px 5px var(--nm-dark-shadow-dark),
+                     inset -2px -2px 5px var(--nm-dark-shadow-light);     /* 内凹效果 */
+  --nm-outset-shadow: 5px 5px 10px var(--nm-dark-shadow-dark),
+                      -5px -5px 10px var(--nm-dark-shadow-light);         /* 外凸效果 */
+  --nm-outset-shadow-hover: 3px 3px 7px var(--nm-dark-shadow-dark),
+                            -3px -3px 7px var(--nm-dark-shadow-light);    /* 悬停外凸效果 */
+  --nm-outset-shadow-active: inset 3px 3px 7px var(--nm-dark-shadow-dark),
+                             inset -3px -3px 7px var(--nm-dark-shadow-light); /* 激活内凹效果 */
+}
+
+/* ===========================================
+   基础样式 - 页面整体布局
+   作用范围：整个页面body元素
+   =========================================== */
+body.dark-neumorphic {
+  background-color: var(--nm-dark-bg);           /* 设置页面主背景色 */
+  color: var(--nm-dark-text-primary);            /* 设置页面主文字色 */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  /* 设置全局字体 */
+  transition: all 0.3s ease;                     /* 设置全局过渡动画 */
+}
+
+/* ===========================================
+   页面头部样式 - Django Admin顶部导航栏
+   作用范围：base.html中的#header元素
+   =========================================== */
+#header.dark-neumorphic {
+  background: var(--nm-dark-bg-secondary);       /* 头部背景色 */
+  border-bottom: 1px solid var(--nm-dark-border); /* 底部边框 */
+  box-shadow: var(--nm-outset-shadow);           /* 新拟态外凸阴影 */
+  padding: 0.5rem 1rem;                          /* 内边距 */
+  display: flex;                                  /* 弹性布局 */
+  justify-content: space-between;                 /* 两端对齐 */
+  align-items: center;                            /* 垂直居中 */
+  border-radius: 15px;                            /* 圆角 */
+  margin: 1rem;                                   /* 外边距 */
+}
+
+/* 头部控制区域 - 包含用户工具和暗色模式切换 */
+.header-controls {
+  display: flex;                                  /* 弹性布局 */
+  align-items: center;                            /* 垂直居中 */
+  gap: 1rem;                                      /* 子元素间距 */
+}
+
+/* 品牌标识样式 - Django Admin标题 */
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+  color: var(--nm-dark-text-primary);             /* 标题文字色 */
+  font-size: 1.5rem;                              /* 字体大小 */
+  font-weight: 600;                               /* 字体粗细 */
+}
+
+/* 用户工具区域 - 包含查看站点、修改密码、注销等链接 */
+#user-tools {
+  color: var(--nm-dark-text-secondary);           /* 工具文字色 */
+  font-size: 0.9rem;                              /* 字体大小 */
+}
+
+/* 用户工具链接样式 */
+#user-tools a {
+  color: var(--nm-dark-accent-primary);           /* 链接颜色 */
+  text-decoration: none;                          /* 去除下划线 */
+  transition: all 0.2s ease;                      /* 过渡动画 */
+  padding: 0.25rem 0.5rem;                        /* 内边距 */
+  border-radius: 8px;                             /* 圆角 */
+}
+
+/* 用户工具链接悬停效果 */
+#user-tools a:hover {
+  background: var(--nm-dark-bg-tertiary);         /* 悬停背景色 */
+  box-shadow: var(--nm-outset-shadow-hover);      /* 悬停阴影效果 */
+}
+
+/* ===========================================
+   面包屑导航样式 - 页面路径导航
+   作用范围：base.html中的.breadcrumbs元素
+   =========================================== */
+.breadcrumbs.dark-neumorphic {
+  background: var(--nm-dark-bg-secondary);       /* 面包屑背景色 */
+  padding: 0.75rem 1rem;                         /* 内边距 */
+  margin: 0 1rem 1rem;                           /* 外边距 */
+  border-radius: 12px;                           /* 圆角 */
+  box-shadow: var(--nm-outset-shadow);           /* 新拟态外凸阴影 */
+  font-size: 0.9rem;                             /* 字体大小 */
+}
+
+/* 面包屑链接样式 - 如"首页 › 产品管理" */
+.breadcrumbs a {
+  color: var(--nm-dark-accent-primary);          /* 链接颜色 */
+  text-decoration: none;                         /* 去除下划线 */
+}
+
+/* 面包屑链接悬停效果 */
+.breadcrumbs a:hover {
+  text-decoration: underline;                    /* 悬停时显示下划线 */
+}
+
+/* ===========================================
+   侧边栏导航样式 - Django Admin左侧导航栏
+   作用范围：nav_sidebar.html和app_list.html
+   =========================================== */
+
+/* 侧边栏切换按钮 - 汉堡菜单按钮 */
+.toggle-nav-sidebar.dark-neumorphic {
+  background: var(--nm-dark-bg-tertiary);        /* 按钮背景色 */
+  border: none;                                   /* 去除边框 */
+  box-shadow: var(--nm-outset-shadow);           /* 新拟态外凸阴影 */
+  border-radius: 50%;                            /* 圆形按钮 */
+  width: 30px;                                   /* 按钮宽度 */
+  height: 30px;                                  /* 按钮高度 */
+  cursor: pointer;                               /* 鼠标指针样式 */
+  transition: all 0.3s ease;                     /* 过渡动画 */
+  display: flex;                                 /* 弹性布局 */
+  align-items: center;                           /* 垂直居中 */
+  justify-content: center;                       /* 水平居中 */
+  color: var(--nm-dark-text-primary);            /* 图标颜色 */
+  position: fixed;                               /* 固定定位 */
+  top: 1rem;                                    /* 距离顶部 */
+  left: 1rem;                                   /* 距离左侧 */
+  z-index: 1000;                                /* 层级 */
+}
+
+/* 侧边栏切换按钮悬停效果 */
+.toggle-nav-sidebar.dark-neumorphic:hover {
+  box-shadow: var(--nm-outset-shadow-hover);     /* 悬停阴影效果 */
+  transform: scale(1.05);                        /* 悬停放大效果 */
+}
+
+/* 侧边栏主容器 - 包含所有导航菜单 */
+#nav-sidebar.dark-neumorphic {
+  background: var(--nm-dark-bg-secondary);       /* 侧边栏背景色 */
+  border-right: 1px solid var(--nm-dark-border); /* 右侧边框 */
+  box-shadow: var(--nm-outset-shadow);           /* 新拟态外凸阴影 */
+  padding: 1rem 0;                               /* 内边距 */
+  border-radius: 0 15px 15px 15px;               /* 右侧和底部圆角，顶部与header对齐不圆角 */
+  width: 250px;                                  /* 侧边栏宽度 */
+  height: calc(100vh - 120px);                   /* 调整高度，留出顶部和底部间隙 */
+  position: fixed;                               /* 固定定位 */
+  top: 80px;                                    /* 距离顶部，与header底部对齐 */
+  left: 1rem;                                   /* 距离左侧 */
+  bottom: 1rem;                                 /* 距离底部 */
+  overflow-y: auto;                              /* 垂直滚动 */
+  z-index: 999;                                 /* 层级 */
+  transition: all 0.3s ease;                     /* 过渡动画 */
+}
+
+/* 侧边栏收起状态 - 隐藏到左侧 */
+#nav-sidebar.dark-neumorphic.collapsed {
+  transform: translateX(-230px);                 /* 向左移动隐藏 */
+}
+
+/* 侧边栏应用列表容器 - 包含所有应用模块 */
+.app-list.dark-neumorphic {
+  padding: 0 1rem;                               /* 左右内边距 */
+}
+
+/* 侧边栏应用模块 - 如"产品管理"、"文章管理"等 */
+.app-list.dark-neumorphic .module {
+  margin: 0.5rem 0;                              /* 上下外边距 */
+  border-radius: 12px;                           /* 圆角 */
+  overflow: hidden;                              /* 隐藏溢出内容 */
+  background: var(--nm-dark-bg-secondary);       /* 模块背景色 */
+  box-shadow: var(--nm-outset-shadow);           /* 新拟态外凸阴影 */
+  border: 1px solid var(--nm-dark-border);       /* 边框 */
+  transition: all 0.3s ease;                     /* 过渡动画 */
+}
+
+/* 侧边栏应用模块悬停效果 */
+.app-list.dark-neumorphic .module:hover {
+  box-shadow: var(--nm-outset-shadow-hover);     /* 悬停阴影效果 */
+  transform: translateY(-2px);                   /* 悬停上移效果 */
+}
+
+/* 侧边栏应用头部 - 应用名称区域 */
+.app-header.dark-neumorphic {
+  padding: 1rem;                                 /* 内边距 */
+  border-bottom: 1px solid var(--nm-dark-border); /* 底部边框 */
+  background: var(--nm-dark-bg-tertiary);        /* 头部背景色 */
+}
+
+/* 侧边栏应用名称链接 - 如"产品管理"链接 */
+.app-name.dark-neumorphic a {
+  color: var(--nm-dark-text-primary);            /* 链接颜色 */
+  text-decoration: none;                         /* 去除下划线 */
+  font-weight: 600;                              /* 字体粗细 */
+  font-size: 1.1rem;                             /* 字体大小 */
+  transition: all 0.2s ease;                     /* 过渡动画 */
+}
+
+/* 侧边栏应用名称链接悬停效果 */
+.app-name.dark-neumorphic a:hover {
+  color: var(--nm-dark-accent-primary);          /* 悬停时链接颜色 */
+}
+
+/* 侧边栏模型列表容器 - 包含模型项 */
+.model-list.dark-neumorphic {
+  padding: 0.5rem 0;                             /* 上下内边距 */
+}
+
+/* 侧边栏模型项 - 如"产品"、"文章"等具体模型 */
+.model-item.dark-neumorphic {
+  display: flex;                                 /* 弹性布局 */
+  justify-content: space-between;                /* 两端对齐 */
+  align-items: center;                           /* 垂直居中 */
+  padding: 0.75rem 1rem;                         /* 内边距 */
+  border-bottom: 1px solid var(--nm-dark-border); /* 底部边框 */
+  transition: all 0.2s ease;                     /* 过渡动画 */
+}
+
+/* 侧边栏模型项最后一个 - 去除底部边框 */
+.model-item.dark-neumorphic:last-child {
+  border-bottom: none;                           /* 去除底部边框 */
+}
+
+/* 侧边栏模型项悬停效果 */
+.model-item.dark-neumorphic:hover {
+  background: var(--nm-dark-bg-tertiary);        /* 悬停背景色 */
+}
+
+/* 侧边栏模型链接和名称 - 模型名称文本 */
+.model-link.dark-neumorphic,
+.model-name.dark-neumorphic {
+  color: var(--nm-dark-text-primary);            /* 文字颜色 */
+  text-decoration: none;                         /* 去除下划线 */
+  font-weight: 500;                              /* 字体粗细 */
+  flex: 1;                                       /* 占据剩余空间 */
+}
+
+/* 侧边栏模型链接悬停效果 */
+.model-link.dark-neumorphic:hover {
+  color: var(--nm-dark-accent-primary);          /* 悬停时链接颜色 */
+  text-decoration: underline;                    /* 悬停时显示下划线 */
+}
+
+/* 侧边栏模型操作按钮容器 - 包含"增加"、"查看"、"修改"按钮 */
+.model-actions.dark-neumorphic {
+  display: flex;                                 /* 弹性布局 */
+  gap: 0.25rem;                                  /* 按钮间距 */
+}
+
+/* 侧边栏模型操作按钮样式 */
+.model-actions.dark-neumorphic .button {
+  padding: 0.25rem 0.5rem;                       /* 按钮内边距 */
+  font-size: 0.8rem;                             /* 按钮字体大小 */
+}
+
+/* 侧边栏当前应用和模型选中状态 - 高亮显示当前页面 */
+.current-app .app-header.dark-neumorphic,
+.current-model .model-item.dark-neumorphic {
+  background: var(--nm-dark-accent-primary);     /* 选中背景色 */
+  color: white;                                  /* 选中文字色 */
+}
+
+/* 侧边栏当前应用和模型链接选中状态 */
+.current-app .app-name.dark-neumorphic a,
+.current-model .model-link.dark-neumorphic {
+  color: white;                                  /* 选中链接颜色 */
+}
+
+/* 侧边栏无权限提示 - 当用户没有权限时显示 */
+.no-permission.dark-neumorphic {
+  padding: 2rem;                                 /* 内边距 */
+  text-align: center;                            /* 文字居中 */
+  color: var(--nm-dark-text-secondary);          /* 提示文字颜色 */
+}
+
+/* ===========================================
+   仪表板卡片样式 - 首页数据统计卡片
+   作用范围：index.html中的dashboard-card元素
+   =========================================== */
+
+/* 仪表板卡片主容器 - 如"内部链接"、"友情链接"等统计卡片 */
+.dashboard-card.dark-neumorphic {
+  background: var(--nm-dark-bg-secondary);       /* 卡片背景色 */
+  border-radius: 15px;                           /* 圆角 */
+  box-shadow: var(--nm-outset-shadow);           /* 新拟态外凸阴影 */
+  padding: 1.5rem;                               /* 内边距 */
+  transition: all 0.3s ease;                     /* 过渡动画 */
+  margin-bottom: 1.5rem;                         /* 底部外边距 */
+  border: 1px solid var(--nm-dark-border);       /* 边框 */
+}
+
+/* 仪表板卡片悬停效果 */
+.dashboard-card.dark-neumorphic:hover {
+  box-shadow: var(--nm-outset-shadow-hover);     /* 悬停阴影效果 */
+  transform: translateY(-3px);                   /* 悬停上移效果 */
+}
+
+/* 仪表板卡片头部 - 包含标题和图标 */
+.dashboard-card-header.dark-neumorphic {
+  display: flex;                                 /* 弹性布局 */
+  justify-content: space-between;                /* 两端对齐 */
+  align-items: center;                           /* 垂直居中 */
+  margin-bottom: 1rem;                           /* 底部外边距 */
+  padding-bottom: 0.75rem;                       /* 底部内边距 */
+  border-bottom: 1px solid var(--nm-dark-border); /* 底部边框 */
+}
+
+/* 仪表板卡片标题 - 如"内部链接"、"友情链接" */
+.dashboard-card-title.dark-neumorphic {
+  font-size: 1.1rem;                             /* 字体大小 */
+  font-weight: 600;                              /* 字体粗细 */
+  color: var(--nm-dark-text-primary);            /* 文字颜色 */
+}
+
+/* 仪表板卡片图标 - 如日历图标、链接图标 */
+.dashboard-card-icon.dark-neumorphic {
+  font-size: 1.5rem;                             /* 图标大小 */
+  color: var(--nm-dark-accent-primary);          /* 图标颜色 */
+}
+
+/* 仪表板卡片数值 - 如"0"、"104"等统计数据 */
+.dashboard-card-value.dark-neumorphic {
+  font-size: 2rem;                               /* 数值字体大小 */
+  font-weight: 700;                              /* 数值字体粗细 */
+  color: var(--nm-dark-text-primary);            /* 数值颜色 */
+  text-align: center;                            /* 数值居中 */
+  margin: 1rem 0;                                /* 上下外边距 */
+}
+
+/* 仪表板卡片底部 - 如"管理内部链接"、"查看留言" */
+.dashboard-card-footer.dark-neumorphic {
+  margin-top: 1rem;                              /* 顶部外边距 */
+  padding-top: 0.75rem;                          /* 顶部内边距 */
+  border-top: 1px solid var(--nm-dark-border);   /* 顶部边框 */
+  font-size: 0.9rem;                             /* 字体大小 */
+  color: var(--nm-dark-text-secondary);          /* 文字颜色 */
+}
+
+/* ===========================================
+   数据卡片功能色样式 - 使用系统功能色
+   作用范围：index.html中的数据卡片
+   =========================================== */
+
+/* 成功色卡片 - 内部链接、站点地图 */
+.dashboard-card.dark-neumorphic.success-card {
+  border-left: 4px solid var(--nm-dark-success); /* 左侧成功色边框 */
+}
+
+.dashboard-card.dark-neumorphic.success-card .dashboard-card-icon.dark-neumorphic {
+  color: var(--nm-dark-success);                 /* 图标成功色 */
+}
+
+.dashboard-card.dark-neumorphic.success-card .dashboard-card-value.dark-neumorphic a {
+  color: var(--nm-dark-success);                 /* 数值成功色 */
+}
+
+/* 警告色卡片 - 友情链接、留言数量 */
+.dashboard-card.dark-neumorphic.warning-card {
+  border-left: 4px solid var(--nm-dark-warning); /* 左侧警告色边框 */
+}
+
+.dashboard-card.dark-neumorphic.warning-card .dashboard-card-icon.dark-neumorphic {
+  color: var(--nm-dark-warning);                 /* 图标警告色 */
+}
+
+.dashboard-card.dark-neumorphic.warning-card .dashboard-card-value.dark-neumorphic a {
+  color: var(--nm-dark-warning);                 /* 数值警告色 */
+}
+
+/* 错误色卡片 - 文章数量、产品数量 */
+.dashboard-card.dark-neumorphic.error-card {
+  border-left: 4px solid var(--nm-dark-error);   /* 左侧错误色边框 */
+}
+
+.dashboard-card.dark-neumorphic.error-card .dashboard-card-icon.dark-neumorphic {
+  color: var(--nm-dark-error);                   /* 图标错误色 */
+}
+
+.dashboard-card.dark-neumorphic.error-card .dashboard-card-value.dark-neumorphic a {
+  color: var(--nm-dark-error);                   /* 数值错误色 */
+}
+
+/* 信息色卡片 - 产品分类、图文分类、图文数量 */
+.dashboard-card.dark-neumorphic.info-card {
+  border-left: 4px solid var(--nm-dark-info);    /* 左侧信息色边框 */
+}
+
+.dashboard-card.dark-neumorphic.info-card .dashboard-card-icon.dark-neumorphic {
+  color: var(--nm-dark-info);                    /* 图标信息色 */
+}
+
+.dashboard-card.dark-neumorphic.info-card .dashboard-card-value.dark-neumorphic a {
+  color: var(--nm-dark-info);                    /* 数值信息色 */
+}
+
+/* ===========================================
+   仪表板网格布局 - 统计卡片容器
+   作用范围：index.html中的统计卡片
+   =========================================== */
+
+/* 仪表板网格布局 - 统计卡片容器 */
+.dashboard-grid {
+  display: grid;                                 /* 网格布局 */
+  grid-template-columns: repeat(3, 1fr);         /* 固定三列布局 */
+  gap: 1.5rem;                                   /* 卡片间距 */
+  margin-bottom: 2rem;                           /* 底部外边距 */
+}
+
+/* 响应式布局 - 小屏幕时调整为两列 */
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);       /* 两列布局 */
+  }
+}
+
+/* 响应式布局 - 移动端时调整为单列 */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;                  /* 单列布局 */
+    gap: 1rem;                                   /* 减小间距 */
+  }
+}
+
+/* ===========================================
+   图表容器样式 - ECharts图表布局
+   作用范围：index.html中的图表容器
+   =========================================== */
+
+/* 图表行容器 - 包含多个图表卡片 */
+.dashboard-charts {
+  display: grid;                                 /* 网格布局 */
+  grid-template-columns: 1fr 1fr;                /* 两列等宽 */
+  gap: 1.5rem;                                   /* 图表间距 */
+  margin-bottom: 2rem;                           /* 底部外边距 */
+}
+
+/* 图表容器 - 包含ECharts图表的div */
+.chart-container {
+  width: 100%;                                   /* 容器宽度 */
+  height: 300px;                                 /* 容器高度 */
+  background: var(--nm-dark-bg-tertiary);        /* 图表背景色 */
+  border-radius: 12px;                           /* 圆角 */
+  padding: 1rem;                                 /* 内边距 */
+  box-shadow: var(--nm-inset-shadow);            /* 内凹阴影效果 */
+  border: 1px solid var(--nm-dark-border);       /* 边框 */
+}
+
+/* 响应式图表布局 */
+@media (max-width: 1200px) {
+  .dashboard-charts {
+    grid-template-columns: 1fr;                  /* 单列布局 */
+  }
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 250px;                               /* 移动端减小高度 */
+    padding: 0.5rem;                             /* 移动端减小内边距 */
+  }
+  
+  .dashboard-charts {
+    gap: 1rem;                                   /* 移动端减小间距 */
+    margin-bottom: 1rem;                         /* 移动端减小底部间距 */
+  }
+}
+
+/* ===========================================
+   表单样式 - Django Admin表单页面
+   作用范围：change_form.html中的表单元素
+   =========================================== */
+
+/* 表单行容器 - 包含表单字段的行 */
+.form-row.dark-neumorphic {
+  margin-bottom: 1.5rem;                         /* 底部外边距 */
+  padding: 1rem;                                 /* 内边距 */
+  background: var(--nm-dark-bg-secondary);       /* 表单行背景色 */
+  border-radius: 12px;                           /* 圆角 */
+  box-shadow: var(--nm-outset-shadow);           /* 新拟态外凸阴影 */
+  border: 1px solid var(--nm-dark-border);       /* 边框 */
+}
+
+.form-row.dark-neumorphic label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--nm-dark-text-primary);
+}
+
+.form-row.dark-neumorphic input,
+.form-row.dark-neumorphic select,
+.form-row.dark-neumorphic textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--nm-dark-border);
+  background: var(--nm-dark-bg);
+  color: var(--nm-dark-text-primary);
+  box-shadow: var(--nm-inset-shadow);
+  transition: all 0.3s ease;
+}
+
+.form-row.dark-neumorphic input:focus,
+.form-row.dark-neumorphic select:focus,
+.form-row.dark-neumorphic textarea:focus {
+  outline: none;
+  border-color: var(--nm-dark-accent-primary);
+  box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.3);
+}
+
+/* ===========================================
+   按钮样式 - 各种操作按钮
+   作用范围：所有button和input[type="submit"]元素
+   =========================================== */
+
+.button.dark-neumorphic,
+input[type="submit"].dark-neumorphic,
+input[type="button"].dark-neumorphic {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background: var(--nm-dark-bg-secondary);
+  color: var(--nm-dark-text-primary);
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--nm-outset-shadow);
+  transition: all 0.3s ease;
+  margin: 0.25rem;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.button.dark-neumorphic:hover,
+input[type="submit"].dark-neumorphic:hover,
+input[type="button"].dark-neumorphic:hover {
+  box-shadow: var(--nm-outset-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.button.dark-neumorphic:active,
+input[type="submit"].dark-neumorphic:active,
+input[type="button"].dark-neumorphic:active {
+  box-shadow: var(--nm-outset-shadow-active);
+  transform: translateY(0);
+}
+
+.button.dark-neumorphic.primary {
+  background: var(--nm-dark-accent-primary);
+  color: white;
+}
+
+.button.dark-neumorphic.secondary {
+  background: var(--nm-dark-bg-tertiary);
+}
+
+.button.dark-neumorphic.success {
+  background: var(--nm-dark-success);
+  color: white;
+}
+
+.button.dark-neumorphic.warning {
+  background: var(--nm-dark-warning);
+  color: white;
+}
+
+.button.dark-neumorphic.error {
+  background: var(--nm-dark-error);
+  color: white;
+}
+
+/* ===========================================
+   表格样式 - 列表页面数据表格
+   作用范围：change_list.html中的数据表格
+   =========================================== */
+
+table.dark-neumorphic {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--nm-dark-bg-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--nm-outset-shadow);
+  border: 1px solid var(--nm-dark-border);
+}
+
+table.dark-neumorphic th,
+table.dark-neumorphic td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--nm-dark-border);
+}
+
+table.dark-neumorphic th {
+  background: var(--nm-dark-bg-tertiary);
+  font-weight: 600;
+  color: var(--nm-dark-text-primary);
+}
+
+table.dark-neumorphic tr:last-child td {
+  border-bottom: none;
+}
+
+table.dark-neumorphic tr:hover td {
+  background: var(--nm-dark-bg);
+}
+
+/* ===========================================
+   分页样式 - 列表页面分页控件
+   作用范围：pagination.html中的分页元素
+   =========================================== */
+
+.pagination.dark-neumorphic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: var(--nm-dark-bg-secondary);
+  border-radius: 12px;
+  box-shadow: var(--nm-outset-shadow);
+  border: 1px solid var(--nm-dark-border);
+}
+
+.pagination.dark-neumorphic a,
+.pagination.dark-neumorphic span {
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--nm-dark-text-primary);
+  transition: all 0.2s ease;
+}
+
+.pagination.dark-neumorphic a:hover {
+  background: var(--nm-dark-bg-tertiary);
+  box-shadow: var(--nm-outset-shadow-hover);
+}
+
+.pagination.dark-neumorphic .current {
+  background: var(--nm-dark-accent-primary);
+  color: white;
+  font-weight: 600;
+}
+
+/* ===========================================
+   消息提示样式 - 成功、警告、错误消息
+   作用范围：messages框架输出的消息
+   =========================================== */
+
+.messages.dark-neumorphic {
+  margin: 1rem;
+}
+
+.messages.dark-neumorphic .success {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid var(--nm-dark-success);
+  color: var(--nm-dark-success);
+}
+
+.messages.dark-neumorphic .warning {
+  background: rgba(255, 152, 0, 0.2);
+  border: 1px solid var(--nm-dark-warning);
+  color: var(--nm-dark-warning);
+}
+
+.messages.dark-neumorphic .error {
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid var(--nm-dark-error);
+  color: var(--nm-dark-error);
+}
+
+.messages.dark-neumorphic li {
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  box-shadow: var(--nm-outset-shadow);
+}
+
+/* ===========================================
+   动画效果 - 各种过渡和动画
+   作用范围：需要动画效果的元素
+   =========================================== */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in.dark-neumorphic {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-in-left.dark-neumorphic {
+  animation: slideInLeft 0.3s ease forwards;
+}
+
+@keyframes pulse {
+  0% { box-shadow: var(--nm-outset-shadow); }
+  50% { box-shadow: var(--nm-outset-shadow-hover); }
+  100% { box-shadow: var(--nm-outset-shadow); }
+}
+
+.pulse.dark-neumorphic {
+  animation: pulse 2s infinite;
+}
+
+/* ===========================================
+   响应式设计 - 适配不同屏幕尺寸
+   作用范围：媒体查询断点
+   =========================================== */
+
+@media (max-width: 768px) {
+  #header.dark-neumorphic {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .header-controls {
+    margin-top: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .breadcrumbs.dark-neumorphic {
+    margin: 0 0.5rem 0.5rem;
+  }
+
+  #nav-sidebar.dark-neumorphic {
+    width: 200px;
+    left: 0.5rem;
+    top: 70px;
+    bottom: 0.5rem;
+    height: calc(100vh - 100px);
+  }
+
+  #nav-sidebar.dark-neumorphic.collapsed {
+    transform: translateX(-180px);
+  }
+
+  .dashboard-card.dark-neumorphic {
+    padding: 1rem;
+  }
+
+  .dashboard-card-value.dark-neumorphic {
+    font-size: 1.5rem;
+  }
+
+  table.dark-neumorphic {
+    font-size: 0.9rem;
+  }
+
+  table.dark-neumorphic th,
+  table.dark-neumorphic td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+/* ===========================================
+   暗色模式切换 - 暗色/亮色模式切换按钮
+   作用范围：暗色模式切换按钮
+   =========================================== */
+
+.dark-mode-toggle.dark-neumorphic {
+  background: var(--nm-dark-bg-tertiary);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  box-shadow: var(--nm-outset-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.dark-mode-toggle.dark-neumorphic:hover {
+  box-shadow: var(--nm-outset-shadow-hover);
+  transform: rotate(15deg);
+}
+
+/* ===========================================
+   文件结束 - Django Admin 深色新拟态主题样式表
+
+   使用说明：
+   1. 所有样式都使用 .dark-neumorphic 类作为作用域限定
+   2. 通过CSS变量实现主题色彩的统一管理
+   3. 使用新拟态设计风格，营造现代感界面
+   4. 支持响应式设计和无障碍访问
+   5. 保持与Django Admin原有功能的完全兼容
+
+   维护建议：
+   - 修改主题色彩时，只需调整:root中的CSS变量
+   - 添加新组件样式时，请遵循现有的命名规范
+   - 保持注释的完整性和准确性
+   =========================================== */

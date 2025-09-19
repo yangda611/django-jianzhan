@@ -1,0 +1,62 @@
+/* ===========================================
+   侧边栏调整样式 - 根据用户要求调整侧边栏高度和圆角
+   =========================================== */
+
+/* 侧边栏主容器调整 - 降低高度并增加圆角 */
+#nav-sidebar.dark-neumorphic {
+  height: calc(100vh - 140px);  /* 降低高度，留出更多顶部和底部间隙 */
+  border-radius: 15px;         /* 增加圆角效果 */
+  top: 90px;                   /* 调整顶部位置，与header保持适当距离 */
+}
+
+/* 侧边栏收起状态调整 */
+#nav-sidebar.dark-neumorphic.collapsed {
+  transform: translateX(-230px);
+}
+
+/* 侧边栏应用列表容器调整 */
+.app-list.dark-neumorphic {
+  padding: 0.5rem;             /* 减少内边距 */
+}
+
+/* 侧边栏应用模块调整 - 增加圆角和间距 */
+.app-list.dark-neumorphic .module {
+  margin: 0.25rem 0;           /* 减少模块间间距 */
+  border-radius: 10px;         /* 增加模块圆角 */
+}
+
+/* 侧边栏应用头部调整 */
+.app-header.dark-neumorphic {
+  border-radius: 10px 10px 0 0; /* 头部圆角匹配模块 */
+  padding: 0.75rem;            /* 调整内边距 */
+}
+
+/* 侧边栏模型列表调整 */
+.model-list.dark-neumorphic {
+  padding: 0.25rem 0;          /* 减少列表内边距 */
+}
+
+/* 侧边栏模型项调整 */
+.model-item.dark-neumorphic {
+  border-radius: 0 0 10px 10px; /* 底部圆角 */
+  margin: 0 0.25rem 0.25rem 0.25rem; /* 增加项间距和圆角 */
+  padding: 0.5rem 0.75rem;     /* 调整内边距 */
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  #nav-sidebar.dark-neumorphic {
+    height: calc(100vh - 120px); /* 移动端高度调整 */
+    border-radius: 12px;         /* 移动端圆角调整 */
+    top: 80px;                   /* 移动端顶部位置 */
+  }
+
+  .app-list.dark-neumorphic .module {
+    border-radius: 8px;          /* 移动端模块圆角 */
+  }
+
+  .model-item.dark-neumorphic {
+    border-radius: 0 0 8px 8px;  /* 移动端项圆角 */
+    margin: 0 0.125rem 0.125rem 0.125rem; /* 移动端间距调整 */
+  }
+}

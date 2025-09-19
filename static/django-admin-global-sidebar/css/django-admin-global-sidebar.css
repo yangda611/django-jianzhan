@@ -1,12 +1,12 @@
 /* django admin global sidebar widget main styles */
-.django-admin-global-sidebar {
+.django-admin-global-sidebar{
     display: block;
     position: absolute;
     width: 200px;
-    height: auto;
-    min-height: 1250px;
+    height: 60% !important;
+    min-height: 100%;
     left: 0;
-    background-color: #6AABFF;
+    background-color: #2D2D44;
 }
 .django-admin-global-sidebar .django-admin-global-sidebar-collapse-button {
     display: block;
@@ -30,7 +30,7 @@
     padding-left: 30px;
     border-bottom: solid 0.1px #FFFFFF1F;
     color: #f7f5f5;
-    background-color: #4e73df;
+    background-color: #2D2D44;
     text-decoration: none;
 }
 .django-admin-global-sidebar a:hover{
@@ -38,16 +38,16 @@
 }
 .django-admin-global-sidebar .django-admin-global-sidebar-submenu a {
     padding-left: 35px;
-    background-color: #4161c0;
+    background-color: #1f1f45;
 }
 .django-admin-global-sidebar li.on > a{
-    background-color: #6AABFF;
+    background-color: #2D2D44;
 }
 .django-admin-global-sidebar li.active > a{
 
 }
 .django-admin-global-sidebar li.active .django-admin-global-sidebar-submenu li.active a{
-    background-color: #6AABFF;
+    background-color: #1f1f45;
     border-right: solid 7px #99CC33;
 }
 .django-admin-global-sidebar li i {
@@ -125,12 +125,12 @@
 .with-django-admin-global-sidebar #content,
 .with-django-admin-global-sidebar div.breadcrumbs,
 .with-django-admin-global-sidebar ul.messagelist {
-    margin-left: 200px;
+    margin-left: 240px;
 }
 .with-django-admin-global-sidebar-collapsed #content,
 .with-django-admin-global-sidebar-collapsed div.breadcrumbs,
 .with-django-admin-global-sidebar-collapsed ul.messagelist {
-    margin-left: 40px;
+    margin-left: 80px;
 }
 #django-admin-global-sidebar {
     top: 62px;

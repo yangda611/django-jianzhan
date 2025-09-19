@@ -1,0 +1,375 @@
+/* Browser Compatibility Enhancements */
+
+/* Vendor Prefixes for Cross-Browser Support */
+.dashboard-card.dark-neumorphic,
+.button.dark-neumorphic,
+.form-row.dark-neumorphic,
+table.dark-neumorphic,
+.pagination.dark-neumorphic,
+.messages.dark-neumorphic li,
+#header.dark-neumorphic,
+.breadcrumbs.dark-neumorphic,
+#nav-sidebar.dark-neumorphic,
+.app-list.dark-neumorphic .module {
+  /* Standard property */
+  transition: all 0.3s ease;
+  /* WebKit browsers (Chrome, Safari) */
+  -webkit-transition: all 0.3s ease;
+  /* Mozilla Firefox */
+  -moz-transition: all 0.3s ease;
+  /* Microsoft Edge/IE */
+  -ms-transition: all 0.3s ease;
+  /* Opera */
+  -o-transition: all 0.3s ease;
+
+  /* Standard property */
+  border-radius: 15px;
+  /* WebKit browsers */
+  -webkit-border-radius: 15px;
+  /* Mozilla Firefox */
+  -moz-border-radius: 15px;
+
+  /* Standard property */
+  box-shadow: var(--nm-outset-shadow);
+  /* WebKit browsers */
+  -webkit-box-shadow: var(--nm-outset-shadow);
+  /* Mozilla Firefox */
+  -moz-box-shadow: var(--nm-outset-shadow);
+}
+
+.dashboard-card.dark-neumorphic:hover,
+.button.dark-neumorphic:hover,
+.app-list.dark-neumorphic .module:hover,
+#nav-sidebar.dark-neumorphic.collapsed {
+  /* Standard property */
+  transform: translateY(-5px);
+  /* WebKit browsers */
+  -webkit-transform: translateY(-5px);
+  /* Mozilla Firefox */
+  -moz-transform: translateY(-5px);
+  /* Microsoft Edge/IE */
+  -ms-transform: translateY(-5px);
+  /* Opera */
+  -o-transform: translateY(-5px);
+
+  /* Standard property */
+  box-shadow: var(--nm-outset-shadow-hover);
+  /* WebKit browsers */
+  -webkit-box-shadow: var(--nm-outset-shadow-hover);
+  /* Mozilla Firefox */
+  -moz-box-shadow: var(--nm-outset-shadow-hover);
+}
+
+/* Animation Properties with Vendor Prefixes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+    -moz-transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    -moz-transform: translateY(0);
+  }
+}
+
+@-ms-keyframes fadeIn {
+  from {
+    opacity: 0;
+    -ms-transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    -ms-transform: translateY(0);
+  }
+}
+
+.fade-in.dark-neumorphic {
+  /* Standard property */
+  animation: fadeIn 0.5s ease forwards;
+  /* WebKit browsers */
+  -webkit-animation: fadeIn 0.5s ease forwards;
+  /* Mozilla Firefox */
+  -moz-animation: fadeIn 0.5s ease forwards;
+  /* Microsoft Edge/IE */
+  -ms-animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes slideInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+}
+
+@-moz-keyframes slideInLeft {
+  from {
+    opacity: 0;
+    -moz-transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    -moz-transform: translateX(0);
+  }
+}
+
+.slide-in-left.dark-neumorphic {
+  /* Standard property */
+  animation: slideInLeft 0.3s ease forwards;
+  /* WebKit browsers */
+  -webkit-animation: slideInLeft 0.3s ease forwards;
+  /* Mozilla Firefox */
+  -moz-animation: slideInLeft 0.3s ease forwards;
+  /* Microsoft Edge/IE */
+  -ms-animation: slideInLeft 0.3s ease forwards;
+}
+
+/* Grid Layout Fallbacks for Older Browsers */
+.dashboard-grid {
+  /* Standard grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+
+  /* Fallback for browsers that don't support grid */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.dashboard-grid > .dashboard-card {
+  /* Fallback width for older browsers */
+  width: calc(33.333% - 1rem);
+  margin: 0.5rem;
+}
+
+/* Media Query Enhancements for Better Responsiveness */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  /* IE10+ specific styles */
+  .dashboard-card.dark-neumorphic {
+    border: 1px solid var(--nm-dark-border);
+  }
+
+  .button.dark-neumorphic {
+    border: 1px solid var(--nm-dark-border);
+  }
+
+  #nav-sidebar.dark-neumorphic {
+    border: 1px solid var(--nm-dark-border);
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --nm-dark-bg: #000000;
+    --nm-dark-bg-secondary: #1a1a1a;
+    --nm-dark-bg-tertiary: #333333;
+    --nm-dark-text-primary: #ffffff;
+    --nm-dark-text-secondary: #e0e0e0;
+    --nm-dark-border: #ffffff;
+  }
+
+  .dashboard-card.dark-neumorphic {
+    border: 2px solid var(--nm-dark-border);
+  }
+
+  .button.dark-neumorphic {
+    border: 2px solid var(--nm-dark-border);
+  }
+
+  #nav-sidebar.dark-neumorphic {
+    border: 2px solid var(--nm-dark-border);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    /* Disable all animations and transitions */
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .dashboard-card.dark-neumorphic,
+  .button.dark-neumorphic,
+  .form-row.dark-neumorphic,
+  #nav-sidebar.dark-neumorphic {
+    transition: none;
+  }
+
+  .fade-in.dark-neumorphic,
+  .slide-in-left.dark-neumorphic {
+    animation: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .dashboard-card.dark-neumorphic {
+    box-shadow: none;
+    border: 1px solid #000;
+    background: #fff;
+    color: #000;
+  }
+
+  .button.dark-neumorphic {
+    box-shadow: none;
+    border: 1px solid #000;
+    background: #fff;
+    color: #000;
+  }
+
+  #header.dark-neumorphic,
+  .breadcrumbs.dark-neumorphic,
+  .dark-mode-toggle.dark-neumorphic,
+  #nav-sidebar.dark-neumorphic {
+    display: none;
+  }
+}
+
+/* Touch Device Enhancements */
+@media (pointer: coarse) {
+  .button.dark-neumorphic,
+  .dashboard-card.dark-neumorphic,
+  .model-item.dark-neumorphic {
+    /* Larger touch targets for mobile devices */
+    min-height: 44px;
+    padding: 1rem;
+  }
+
+  .dashboard-card.dark-neumorphic:hover,
+  .model-item.dark-neumorphic:hover {
+    /* Disable hover effects on touch devices */
+    transform: none;
+    box-shadow: var(--nm-outset-shadow);
+  }
+
+  /* Active states for touch feedback */
+  .button.dark-neumorphic:active,
+  .dashboard-card.dark-neumorphic:active,
+  .model-item.dark-neumorphic:active {
+    transform: translateY(-2px);
+    box-shadow: var(--nm-outset-shadow-active);
+  }
+}
+
+/* Dark Mode Override for System Preference */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-mode) {
+    /* Use dark theme by default if system prefers dark */
+  }
+}
+
+/* Light Mode Override */
+:root.light-mode {
+  --nm-dark-bg: #f5f5f5;
+  --nm-dark-bg-secondary: #ffffff;
+  --nm-dark-bg-tertiary: #e0e0e0;
+  --nm-dark-text-primary: #333333;
+  --nm-dark-text-secondary: #666666;
+  --nm-dark-border: #cccccc;
+  --nm-dark-shadow-light: rgba(255, 255, 255, 0.8);
+  --nm-dark-shadow-dark: rgba(0, 0, 0, 0.1);
+  --nm-dark-accent-primary: #6c63ff;
+}
+
+/* Accessibility Enhancements */
+:focus {
+  /* Ensure focus indicators meet accessibility standards */
+  outline: 2px solid var(--nm-dark-accent-primary);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  /* Screen reader only content */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ARIA Landmark Regions */
+[role="banner"] {
+  /* Header region */
+  border-bottom: 1px solid var(--nm-dark-border);
+}
+
+[role="navigation"] {
+  /* Navigation region */
+  border-right: 1px solid var(--nm-dark-border);
+}
+
+[role="main"] {
+  /* Main content region */
+}
+
+[role="contentinfo"] {
+  /* Footer region */
+  border-top: 1px solid var(--nm-dark-border);
+}
+
+/* Skip to Main Content Link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--nm-dark-accent-primary);
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  transition: top 0.3s ease;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}

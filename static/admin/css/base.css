@@ -705,7 +705,7 @@ td ul.errorlist + input, td ul.errorlist + select, td ul.errorlist + textarea {
 
 div.breadcrumbs {
     background: var(--breadcrumbs-bg);
-    padding: 10px 40px;
+    padding: 10px 10px 10px 40px;
     border: none;
     color: var(--breadcrumbs-fg);
     text-align: left;

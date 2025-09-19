@@ -27,9 +27,8 @@
 
 {% if not is_popup %}
 {% block breadcrumbs %}
-<div class="breadcrumbs">
+<div class="breadcrumbs dark-neumorphic">
 <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
-
 &rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}
 </div>
 {% endblock %}
@@ -38,21 +37,21 @@
 {% block coltype %}{% endblock %}
 
 {% block content %}
-  <div id="content-main">
+  <div id="content-main" class="fade-in dark-neumorphic">
     {% block object-tools %}
-        <ul class="object-tools">
+        <div class="object-tools">
           {% block object-tools-items %}
             {% change_list_object_tools %}
           {% endblock %}
-        </ul>
+        </div>
     {% endblock %}
     {% if cl.formset and cl.formset.errors %}
-        <p class="errornote">
+        <div class="errornote messages dark-neumorphic">
         {% if cl.formset.total_error_count == 1 %}{% translate "Please correct the error below." %}{% else %}{% translate "Please correct the errors below." %}{% endif %}
-        </p>
+        </div>
         {{ cl.formset.non_form_errors }}
     {% endif %}
-    <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+    <div class="module{% if cl.has_filters %} filtered{% endif %} dark-neumorphic" id="changelist">
       <div class="changelist-form-container">
         {% block search %}{% search_form cl %}{% endblock %}
         {% block date_hierarchy %}{% if cl.date_hierarchy %}{% date_hierarchy cl %}{% endif %}{% endblock %}
@@ -72,7 +71,7 @@
       </div>
       {% block filters %}
         {% if cl.has_filters %}
-          <div id="changelist-filter">
+          <div id="changelist-filter" class="dark-neumorphic">
             <h2>{% translate 'Filter' %}</h2>
             {% if cl.has_active_filters %}<h3 id="changelist-filter-clear">
               <a href="{{ cl.clear_all_filters_qs }}">&#10006; {% translate "Clear all filters" %}</a>

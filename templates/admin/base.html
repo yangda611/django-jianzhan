@@ -1,9 +1,12 @@
 {% load i18n static %}<!DOCTYPE html>
 {% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
-<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}" class="dark-neumorphic">
 <head>
 <title>{% block title %}{% endblock %}</title>
 <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/neumorphic-dark.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/sidebar-adjustments.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/browser-compat.css" %}">
 {% if not is_popup and is_nav_sidebar_enabled %}
   <link rel="stylesheet" type="text/css" href="{% static "admin/css/nav_sidebar.css" %}">
   <script src="{% static 'admin/js/nav_sidebar.js' %}" defer></script>
@@ -23,44 +26,55 @@
 </head>
 {% load i18n %}
 
-<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %} dark-neumorphic"
   data-admin-utc-offset="{% now "Z" %}">
 
+<!-- Skip to main content link for accessibility -->
+<a href="#content" class="skip-link sr-only">Skip to main content</a>
+
 <!-- Container -->
-<div id="container">
+<div id="container" role="main">
 
     {% if not is_popup %}
     <!-- Header -->
-    <div id="header">
+    <div id="header" class="dark-neumorphic" role="banner">
         <div id="branding">
         {% block branding %}{% endblock %}
         </div>
-        {% block usertools %}
-        <div id="user-tools">
-            {% block welcome-msg %}
-                {% translate 'Welcome,' %}
-                <strong>{% firstof user.get_short_name user.get_username %}</strong>.
-            {% endblock %}
-            {% block userlinks %}
-                    <a href="{{ site_mes.url }}" target="_blank">{% translate 'View site' %}</a> /
-                {% if user.is_active and user.is_staff %}
-                    {% url 'django-admindocs-docroot' as docsroot %}
-                    {% if docsroot %}
-                        <a href="{{ docsroot }}">{% translate 'Documentation' %}</a> /
+        <div class="header-controls">
+            <!-- Dark Mode Toggle -->
+            <button id="dark-mode-toggle" class="dark-mode-toggle dark-neumorphic" aria-label="Toggle dark mode">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                </svg>
+            </button>
+            {% block usertools %}
+            <div id="user-tools">
+                {% block welcome-msg %}
+                    {% translate 'Welcome,' %}
+                    <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+                {% endblock %}
+                {% block userlinks %}
+                        <a href="{{ site_mes.url }}" target="_blank">{% translate 'View site' %}</a> /
+                    {% if user.is_active and user.is_staff %}
+                        {% url 'django-admindocs-docroot' as docsroot %}
+                        {% if docsroot %}
+                            <a href="{{ docsroot }}">{% translate 'Documentation' %}</a> /
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-                {% if user.has_usable_password %}
-                <a href="{% url 'admin:password_change' %}">{% translate 'Change password' %}</a> /
-                {% endif %}
-                <a href="{% url 'admin:logout' %}">{% translate 'Log out' %}</a>
+                    {% if user.has_usable_password %}
+                    <a href="{% url 'admin:password_change' %}">{% translate 'Change password' %}</a> /
+                    {% endif %}
+                    <a href="{% url 'admin:logout' %}">{% translate 'Log out' %}</a>
+                {% endblock %}
+            </div>
             {% endblock %}
         </div>
-        {% endblock %}
         {% block nav-global %}{% endblock %}
     </div>
     <!-- END Header -->
     {% block breadcrumbs %}
-    <div class="breadcrumbs">
+    <div class="breadcrumbs dark-neumorphic">
     <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
     {% if title %} &rsaquo; {{ title }}{% endif %}
     </div>
@@ -76,7 +90,7 @@
       <div class="content">
         {% block messages %}
           {% if messages %}
-            <ul class="messagelist">{% for message in messages %}
+            <ul class="messagelist messages dark-neumorphic">{% for message in messages %}
               <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
             {% endfor %}</ul>
           {% endif %}
@@ -99,5 +113,67 @@
     </div>
 </div>
 <!-- END Container -->
+
+<!-- Dark Mode Toggle Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    const htmlElement = document.documentElement;
+
+    // Check for saved theme preference or respect system preference
+    const savedTheme = localStorage.getItem('admin-theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        htmlElement.classList.add('dark-neumorphic');
+    } else {
+        htmlElement.classList.remove('dark-neumorphic');
+    }
+
+    toggleButton.addEventListener('click', function() {
+        htmlElement.classList.toggle('dark-neumorphic');
+
+        // Save preference to localStorage
+        if (htmlElement.classList.contains('dark-neumorphic')) {
+            localStorage.setItem('admin-theme', 'dark');
+        } else {
+            localStorage.setItem('admin-theme', 'light');
+        }
+    });
+
+    // Add keyboard support for dark mode toggle
+    toggleButton.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleButton.click();
+        }
+    });
+
+    // Sidebar toggle functionality
+    const sidebarToggleButton = document.getElementById('toggle-nav-sidebar');
+    const navSidebar = document.getElementById('nav-sidebar');
+
+    if (sidebarToggleButton && navSidebar) {
+        sidebarToggleButton.addEventListener('click', function() {
+            navSidebar.classList.toggle('collapsed');
+        });
+    }
+});
+
+// Add skip link functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const skipLink = document.querySelector('.skip-link');
+    if (skipLink) {
+        skipLink.addEventListener('focus', function() {
+            this.classList.add('focused');
+        });
+
+        skipLink.addEventListener('blur', function() {
+            this.classList.remove('focused');
+        });
+    }
+});
+</script>
+
 </body>
 </html>
