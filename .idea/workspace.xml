@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f27dfb5e-85f3-405e-84ac-1cd13d78e626" name="更改" comment="" />
+    <list default="true" id="f27dfb5e-85f3-405e-84ac-1cd13d78e626" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/form/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/form/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goods/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/goods/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/links/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/links/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/page/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/page/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site_set/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/site_set/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sitemap_set/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/sitemap_set/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/slide_set/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/slide_set/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sxkj_admin/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/sxkj_admin/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tuwen/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/tuwen/apps.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,21 +21,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "yangda611"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;yangda611&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/yangda611/django-jianzhan.git",
-    "accountId": "b3ac6bd5-4a7a-491f-a5fc-7e52af39747b"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/yangda611/django-jianzhan.git&quot;,
+    &quot;accountId&quot;: &quot;b3ac6bd5-4a7a-491f-a5fc-7e52af39747b&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="32uy00oMtpTWiX2ErLrL5bsts5x" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,7 +46,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "dev",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/localCode/lylksy.com/源码"
+    "last_opened_file_path": "E:/localCode/shua_guang_gao_project/RuoYi-Backend"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />

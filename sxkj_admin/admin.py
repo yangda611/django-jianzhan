@@ -15,6 +15,36 @@ from tuwen.models import TuWen, TuWenCatalog
 
 class MyAdminSite(admin.AdminSite):
     index_template = 'admin/index.html'
+    
+    def get_app_list(self, request):
+        """
+        自定义应用列表顺序和显示
+        """
+        app_list = super().get_app_list(request)
+        
+        # 定义新的应用顺序和显示名称
+        app_order = [
+            ('goods', '🏪 商品中心'),
+            ('news', '📰 内容发布'), 
+            ('tuwen', '🖼️ 多媒体库'),
+            ('links', '🔗 链接资源'),
+            ('form', '💬 用户反馈'),
+            ('page', '📄 页面管理'),
+            ('slide_set', '🎬 轮播展示'),
+            ('sitemap_set', '🗺️ 地图配置'),
+            ('site_set', '⚙️ 系统设置'),
+        ]
+        
+        # 重新排序应用列表
+        ordered_apps = []
+        for app_name, display_name in app_order:
+            for app in app_list:
+                if app['app_label'] == app_name:
+                    app['name'] = display_name
+                    ordered_apps.append(app)
+                    break
+        
+        return ordered_apps
 
     @never_cache
     def index(self, request, extra_context=None):
